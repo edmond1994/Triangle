@@ -1,0 +1,149 @@
+var _opensolid$geometry$OpenSolid_BoundingBox2d$maxY = function (_p0) {
+	var _p1 = _p0;
+	return _p1._0.maxY;
+};
+var _opensolid$geometry$OpenSolid_BoundingBox2d$minY = function (_p2) {
+	var _p3 = _p2;
+	return _p3._0.minY;
+};
+var _opensolid$geometry$OpenSolid_BoundingBox2d$maxX = function (_p4) {
+	var _p5 = _p4;
+	return _p5._0.maxX;
+};
+var _opensolid$geometry$OpenSolid_BoundingBox2d$minX = function (_p6) {
+	var _p7 = _p6;
+	return _p7._0.minX;
+};
+var _opensolid$geometry$OpenSolid_BoundingBox2d$overlaps = F2(
+	function (other, boundingBox) {
+		return (_elm_lang$core$Native_Utils.cmp(
+			_opensolid$geometry$OpenSolid_BoundingBox2d$minX(boundingBox),
+			_opensolid$geometry$OpenSolid_BoundingBox2d$maxX(other)) < 1) && ((_elm_lang$core$Native_Utils.cmp(
+			_opensolid$geometry$OpenSolid_BoundingBox2d$maxX(boundingBox),
+			_opensolid$geometry$OpenSolid_BoundingBox2d$minX(other)) > -1) && ((_elm_lang$core$Native_Utils.cmp(
+			_opensolid$geometry$OpenSolid_BoundingBox2d$minY(boundingBox),
+			_opensolid$geometry$OpenSolid_BoundingBox2d$maxY(other)) < 1) && (_elm_lang$core$Native_Utils.cmp(
+			_opensolid$geometry$OpenSolid_BoundingBox2d$maxY(boundingBox),
+			_opensolid$geometry$OpenSolid_BoundingBox2d$minY(other)) > -1)));
+	});
+var _opensolid$geometry$OpenSolid_BoundingBox2d$isContainedIn = F2(
+	function (other, boundingBox) {
+		return ((_elm_lang$core$Native_Utils.cmp(
+			_opensolid$geometry$OpenSolid_BoundingBox2d$minX(other),
+			_opensolid$geometry$OpenSolid_BoundingBox2d$minX(boundingBox)) < 1) && (_elm_lang$core$Native_Utils.cmp(
+			_opensolid$geometry$OpenSolid_BoundingBox2d$maxX(boundingBox),
+			_opensolid$geometry$OpenSolid_BoundingBox2d$maxX(other)) < 1)) && ((_elm_lang$core$Native_Utils.cmp(
+			_opensolid$geometry$OpenSolid_BoundingBox2d$minY(other),
+			_opensolid$geometry$OpenSolid_BoundingBox2d$minY(boundingBox)) < 1) && (_elm_lang$core$Native_Utils.cmp(
+			_opensolid$geometry$OpenSolid_BoundingBox2d$maxY(boundingBox),
+			_opensolid$geometry$OpenSolid_BoundingBox2d$maxY(other)) < 1));
+	});
+var _opensolid$geometry$OpenSolid_BoundingBox2d$hull = F2(
+	function (firstBox, secondBox) {
+		return _opensolid$geometry$OpenSolid_Geometry_Types$BoundingBox2d(
+			{
+				minX: A2(
+					_elm_lang$core$Basics$min,
+					_opensolid$geometry$OpenSolid_BoundingBox2d$minX(firstBox),
+					_opensolid$geometry$OpenSolid_BoundingBox2d$minX(secondBox)),
+				maxX: A2(
+					_elm_lang$core$Basics$max,
+					_opensolid$geometry$OpenSolid_BoundingBox2d$maxX(firstBox),
+					_opensolid$geometry$OpenSolid_BoundingBox2d$maxX(secondBox)),
+				minY: A2(
+					_elm_lang$core$Basics$min,
+					_opensolid$geometry$OpenSolid_BoundingBox2d$minY(firstBox),
+					_opensolid$geometry$OpenSolid_BoundingBox2d$minY(secondBox)),
+				maxY: A2(
+					_elm_lang$core$Basics$max,
+					_opensolid$geometry$OpenSolid_BoundingBox2d$maxY(firstBox),
+					_opensolid$geometry$OpenSolid_BoundingBox2d$maxY(secondBox))
+			});
+	});
+var _opensolid$geometry$OpenSolid_BoundingBox2d$intersection = F2(
+	function (firstBox, secondBox) {
+		return A2(_opensolid$geometry$OpenSolid_BoundingBox2d$overlaps, firstBox, secondBox) ? _elm_lang$core$Maybe$Just(
+			_opensolid$geometry$OpenSolid_Geometry_Types$BoundingBox2d(
+				{
+					minX: A2(
+						_elm_lang$core$Basics$max,
+						_opensolid$geometry$OpenSolid_BoundingBox2d$minX(firstBox),
+						_opensolid$geometry$OpenSolid_BoundingBox2d$minX(secondBox)),
+					maxX: A2(
+						_elm_lang$core$Basics$min,
+						_opensolid$geometry$OpenSolid_BoundingBox2d$maxX(firstBox),
+						_opensolid$geometry$OpenSolid_BoundingBox2d$maxX(secondBox)),
+					minY: A2(
+						_elm_lang$core$Basics$max,
+						_opensolid$geometry$OpenSolid_BoundingBox2d$minY(firstBox),
+						_opensolid$geometry$OpenSolid_BoundingBox2d$minY(secondBox)),
+					maxY: A2(
+						_elm_lang$core$Basics$min,
+						_opensolid$geometry$OpenSolid_BoundingBox2d$maxY(firstBox),
+						_opensolid$geometry$OpenSolid_BoundingBox2d$maxY(secondBox))
+				})) : _elm_lang$core$Maybe$Nothing;
+	});
+var _opensolid$geometry$OpenSolid_BoundingBox2d$extrema = function (_p8) {
+	var _p9 = _p8;
+	return _p9._0;
+};
+var _opensolid$geometry$OpenSolid_BoundingBox2d$dimensions = function (boundingBox) {
+	var _p10 = _opensolid$geometry$OpenSolid_BoundingBox2d$extrema(boundingBox);
+	var minX = _p10.minX;
+	var maxX = _p10.maxX;
+	var minY = _p10.minY;
+	var maxY = _p10.maxY;
+	return {ctor: '_Tuple2', _0: maxX - minX, _1: maxY - minY};
+};
+var _opensolid$geometry$OpenSolid_BoundingBox2d$midX = function (boundingBox) {
+	var _p11 = _opensolid$geometry$OpenSolid_BoundingBox2d$extrema(boundingBox);
+	var minX = _p11.minX;
+	var maxX = _p11.maxX;
+	return minX + (0.5 * (maxX - minX));
+};
+var _opensolid$geometry$OpenSolid_BoundingBox2d$midY = function (boundingBox) {
+	var _p12 = _opensolid$geometry$OpenSolid_BoundingBox2d$extrema(boundingBox);
+	var minY = _p12.minY;
+	var maxY = _p12.maxY;
+	return minY + (0.5 * (maxY - minY));
+};
+var _opensolid$geometry$OpenSolid_BoundingBox2d$centroid = function (boundingBox) {
+	return _opensolid$geometry$OpenSolid_Geometry_Types$Point2d(
+		{
+			ctor: '_Tuple2',
+			_0: _opensolid$geometry$OpenSolid_BoundingBox2d$midX(boundingBox),
+			_1: _opensolid$geometry$OpenSolid_BoundingBox2d$midY(boundingBox)
+		});
+};
+var _opensolid$geometry$OpenSolid_BoundingBox2d$contains = F2(
+	function (point, boundingBox) {
+		var _p13 = _opensolid$geometry$OpenSolid_BoundingBox2d$extrema(boundingBox);
+		var minX = _p13.minX;
+		var maxX = _p13.maxX;
+		var minY = _p13.minY;
+		var maxY = _p13.maxY;
+		var _p14 = _opensolid$geometry$OpenSolid_Point2d$coordinates(point);
+		var x = _p14._0;
+		var y = _p14._1;
+		return ((_elm_lang$core$Native_Utils.cmp(minX, x) < 1) && (_elm_lang$core$Native_Utils.cmp(x, maxX) < 1)) && ((_elm_lang$core$Native_Utils.cmp(minY, y) < 1) && (_elm_lang$core$Native_Utils.cmp(y, maxY) < 1));
+	});
+var _opensolid$geometry$OpenSolid_BoundingBox2d$hullOf = function (boundingBoxes) {
+	var _p15 = boundingBoxes;
+	if (_p15.ctor === '::') {
+		return _elm_lang$core$Maybe$Just(
+			A3(_elm_lang$core$List$foldl, _opensolid$geometry$OpenSolid_BoundingBox2d$hull, _p15._0, _p15._1));
+	} else {
+		return _elm_lang$core$Maybe$Nothing;
+	}
+};
+var _opensolid$geometry$OpenSolid_BoundingBox2d$singleton = function (point) {
+	var _p16 = _opensolid$geometry$OpenSolid_Point2d$coordinates(point);
+	var x = _p16._0;
+	var y = _p16._1;
+	return _opensolid$geometry$OpenSolid_Geometry_Types$BoundingBox2d(
+		{minX: x, maxX: x, minY: y, maxY: y});
+};
+var _opensolid$geometry$OpenSolid_BoundingBox2d$containing = function (points) {
+	return _opensolid$geometry$OpenSolid_BoundingBox2d$hullOf(
+		A2(_elm_lang$core$List$map, _opensolid$geometry$OpenSolid_BoundingBox2d$singleton, points));
+};

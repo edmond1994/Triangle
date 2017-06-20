@@ -1,0 +1,211 @@
+var _opensolid$geometry$OpenSolid_Arc2d$sweptAngle = function (_p0) {
+	var _p1 = _p0;
+	return _p1._0.sweptAngle;
+};
+var _opensolid$geometry$OpenSolid_Arc2d$startPoint = function (_p2) {
+	var _p3 = _p2;
+	return _p3._0.startPoint;
+};
+var _opensolid$geometry$OpenSolid_Arc2d$centerPoint = function (_p4) {
+	var _p5 = _p4;
+	return _p5._0.centerPoint;
+};
+var _opensolid$geometry$OpenSolid_Arc2d$radius = function (arc) {
+	return A2(
+		_opensolid$geometry$OpenSolid_Point2d$distanceFrom,
+		_opensolid$geometry$OpenSolid_Arc2d$centerPoint(arc),
+		_opensolid$geometry$OpenSolid_Arc2d$startPoint(arc));
+};
+var _opensolid$geometry$OpenSolid_Arc2d$endPoint = function (arc) {
+	return A3(
+		_opensolid$geometry$OpenSolid_Point2d$rotateAround,
+		_opensolid$geometry$OpenSolid_Arc2d$centerPoint(arc),
+		_opensolid$geometry$OpenSolid_Arc2d$sweptAngle(arc),
+		_opensolid$geometry$OpenSolid_Arc2d$startPoint(arc));
+};
+var _opensolid$geometry$OpenSolid_Arc2d$point = F2(
+	function (arc, parameter) {
+		var angle = parameter * _opensolid$geometry$OpenSolid_Arc2d$sweptAngle(arc);
+		return A3(
+			_opensolid$geometry$OpenSolid_Point2d$rotateAround,
+			_opensolid$geometry$OpenSolid_Arc2d$centerPoint(arc),
+			angle,
+			_opensolid$geometry$OpenSolid_Arc2d$startPoint(arc));
+	});
+var _opensolid$geometry$OpenSolid_Arc2d$scaleAbout = F3(
+	function (point, scale, arc) {
+		var scalePoint = A2(_opensolid$geometry$OpenSolid_Point2d$scaleAbout, point, scale);
+		return _opensolid$geometry$OpenSolid_Geometry_Types$Arc2d(
+			{
+				centerPoint: scalePoint(
+					_opensolid$geometry$OpenSolid_Arc2d$centerPoint(arc)),
+				startPoint: scalePoint(
+					_opensolid$geometry$OpenSolid_Arc2d$startPoint(arc)),
+				sweptAngle: (_elm_lang$core$Native_Utils.cmp(scale, 0) > 0) ? _opensolid$geometry$OpenSolid_Arc2d$sweptAngle(arc) : (0 - _opensolid$geometry$OpenSolid_Arc2d$sweptAngle(arc))
+			});
+	});
+var _opensolid$geometry$OpenSolid_Arc2d$rotateAround = F2(
+	function (point, angle) {
+		var rotatePoint = A2(_opensolid$geometry$OpenSolid_Point2d$rotateAround, point, angle);
+		return function (arc) {
+			return _opensolid$geometry$OpenSolid_Geometry_Types$Arc2d(
+				{
+					centerPoint: rotatePoint(
+						_opensolid$geometry$OpenSolid_Arc2d$centerPoint(arc)),
+					startPoint: rotatePoint(
+						_opensolid$geometry$OpenSolid_Arc2d$startPoint(arc)),
+					sweptAngle: _opensolid$geometry$OpenSolid_Arc2d$sweptAngle(arc)
+				});
+		};
+	});
+var _opensolid$geometry$OpenSolid_Arc2d$translateBy = F2(
+	function (displacement, arc) {
+		var translatePoint = _opensolid$geometry$OpenSolid_Point2d$translateBy(displacement);
+		return _opensolid$geometry$OpenSolid_Geometry_Types$Arc2d(
+			{
+				centerPoint: translatePoint(
+					_opensolid$geometry$OpenSolid_Arc2d$centerPoint(arc)),
+				startPoint: translatePoint(
+					_opensolid$geometry$OpenSolid_Arc2d$startPoint(arc)),
+				sweptAngle: _opensolid$geometry$OpenSolid_Arc2d$sweptAngle(arc)
+			});
+	});
+var _opensolid$geometry$OpenSolid_Arc2d$mirrorAcross = function (axis) {
+	var mirrorPoint = _opensolid$geometry$OpenSolid_Point2d$mirrorAcross(axis);
+	return function (arc) {
+		return _opensolid$geometry$OpenSolid_Geometry_Types$Arc2d(
+			{
+				centerPoint: mirrorPoint(
+					_opensolid$geometry$OpenSolid_Arc2d$centerPoint(arc)),
+				startPoint: mirrorPoint(
+					_opensolid$geometry$OpenSolid_Arc2d$startPoint(arc)),
+				sweptAngle: 0 - _opensolid$geometry$OpenSolid_Arc2d$sweptAngle(arc)
+			});
+	};
+};
+var _opensolid$geometry$OpenSolid_Arc2d$relativeTo = F2(
+	function (frame, arc) {
+		var relativePoint = _opensolid$geometry$OpenSolid_Point2d$relativeTo(frame);
+		return _opensolid$geometry$OpenSolid_Geometry_Types$Arc2d(
+			{
+				centerPoint: relativePoint(
+					_opensolid$geometry$OpenSolid_Arc2d$centerPoint(arc)),
+				startPoint: relativePoint(
+					_opensolid$geometry$OpenSolid_Arc2d$startPoint(arc)),
+				sweptAngle: _opensolid$geometry$OpenSolid_Frame2d$isRightHanded(frame) ? _opensolid$geometry$OpenSolid_Arc2d$sweptAngle(arc) : (0 - _opensolid$geometry$OpenSolid_Arc2d$sweptAngle(arc))
+			});
+	});
+var _opensolid$geometry$OpenSolid_Arc2d$placeIn = F2(
+	function (frame, arc) {
+		var placePoint = _opensolid$geometry$OpenSolid_Point2d$placeIn(frame);
+		return _opensolid$geometry$OpenSolid_Geometry_Types$Arc2d(
+			{
+				centerPoint: placePoint(
+					_opensolid$geometry$OpenSolid_Arc2d$centerPoint(arc)),
+				startPoint: placePoint(
+					_opensolid$geometry$OpenSolid_Arc2d$startPoint(arc)),
+				sweptAngle: _opensolid$geometry$OpenSolid_Frame2d$isRightHanded(frame) ? _opensolid$geometry$OpenSolid_Arc2d$sweptAngle(arc) : (0 - _opensolid$geometry$OpenSolid_Arc2d$sweptAngle(arc))
+			});
+	});
+var _opensolid$geometry$OpenSolid_Arc2d$placeOnto = F2(
+	function (sketchPlane, arc) {
+		var place = _opensolid$geometry$OpenSolid_Point2d$placeOnto(sketchPlane);
+		var axis = _opensolid$geometry$OpenSolid_Geometry_Types$Axis3d(
+			{
+				originPoint: place(
+					_opensolid$geometry$OpenSolid_Arc2d$centerPoint(arc)),
+				direction: _opensolid$geometry$OpenSolid_SketchPlane3d$normalDirection(sketchPlane)
+			});
+		return _opensolid$geometry$OpenSolid_Geometry_Types$Arc3d(
+			{
+				axis: axis,
+				startPoint: place(
+					_opensolid$geometry$OpenSolid_Arc2d$startPoint(arc)),
+				sweptAngle: _opensolid$geometry$OpenSolid_Arc2d$sweptAngle(arc)
+			});
+	});
+var _opensolid$geometry$OpenSolid_Arc2d$fromEndpoints = F5(
+	function (startPoint, endPoint, radius, lengthType, windingDirection) {
+		var squaredRadius = radius * radius;
+		var chord = _opensolid$geometry$OpenSolid_Geometry_Types$LineSegment2d(
+			{ctor: '_Tuple2', _0: startPoint, _1: endPoint});
+		var squaredHalfLength = _opensolid$geometry$OpenSolid_LineSegment2d$squaredLength(chord) / 4;
+		return (_elm_lang$core$Native_Utils.cmp(squaredRadius, squaredHalfLength) > -1) ? A2(
+			_elm_lang$core$Maybe$map,
+			function (offsetDirection) {
+				var halfLength = _elm_lang$core$Basics$sqrt(squaredHalfLength);
+				var shortAngle = 2 * _elm_lang$core$Basics$asin(halfLength / radius);
+				var sweptAngle = function () {
+					var _p6 = {ctor: '_Tuple2', _0: windingDirection, _1: lengthType};
+					if (_p6._0.ctor === 'Counterclockwise') {
+						if (_p6._1.ctor === 'Short') {
+							return shortAngle;
+						} else {
+							return (2 * _elm_lang$core$Basics$pi) - shortAngle;
+						}
+					} else {
+						if (_p6._1.ctor === 'Short') {
+							return 0 - shortAngle;
+						} else {
+							return shortAngle - (2 * _elm_lang$core$Basics$pi);
+						}
+					}
+				}();
+				var midpoint = _opensolid$geometry$OpenSolid_LineSegment2d$midpoint(chord);
+				var offsetMagnitude = _elm_lang$core$Basics$sqrt(squaredRadius - squaredHalfLength);
+				var offsetDistance = function () {
+					var _p7 = {ctor: '_Tuple2', _0: windingDirection, _1: lengthType};
+					if (_p7._0.ctor === 'Clockwise') {
+						if (_p7._1.ctor === 'Long') {
+							return offsetMagnitude;
+						} else {
+							return 0 - offsetMagnitude;
+						}
+					} else {
+						if (_p7._1.ctor === 'Short') {
+							return offsetMagnitude;
+						} else {
+							return 0 - offsetMagnitude;
+						}
+					}
+				}();
+				var offset = A2(_opensolid$geometry$OpenSolid_Vector2d$in_, offsetDirection, offsetDistance);
+				var centerPoint = A2(_opensolid$geometry$OpenSolid_Point2d$translateBy, offset, midpoint);
+				return _opensolid$geometry$OpenSolid_Geometry_Types$Arc2d(
+					{centerPoint: centerPoint, startPoint: startPoint, sweptAngle: sweptAngle});
+			},
+			_opensolid$geometry$OpenSolid_LineSegment2d$normalDirection(chord)) : _elm_lang$core$Maybe$Nothing;
+	});
+var _opensolid$geometry$OpenSolid_Arc2d$throughPoints = F3(
+	function (firstPoint, secondPoint, thirdPoint) {
+		return A2(
+			_elm_lang$core$Maybe$andThen,
+			function (circle) {
+				var centerPoint = _opensolid$geometry$OpenSolid_Circle2d$centerPoint(circle);
+				var firstVector = A2(_opensolid$geometry$OpenSolid_Point2d$vectorFrom, centerPoint, firstPoint);
+				var secondVector = A2(_opensolid$geometry$OpenSolid_Point2d$vectorFrom, centerPoint, secondPoint);
+				var thirdVector = A2(_opensolid$geometry$OpenSolid_Point2d$vectorFrom, centerPoint, thirdPoint);
+				return A4(
+					_elm_lang$core$Maybe$map3,
+					F3(
+						function (firstDirection, secondDirection, thirdDirection) {
+							var full = A2(_opensolid$geometry$OpenSolid_Direction2d$angleFrom, firstDirection, thirdDirection);
+							var partial = A2(_opensolid$geometry$OpenSolid_Direction2d$angleFrom, firstDirection, secondDirection);
+							var sweptAngle = ((_elm_lang$core$Native_Utils.cmp(partial, 0) > -1) && (_elm_lang$core$Native_Utils.cmp(full, partial) > -1)) ? full : (((_elm_lang$core$Native_Utils.cmp(partial, 0) < 1) && (_elm_lang$core$Native_Utils.cmp(full, partial) < 1)) ? full : ((_elm_lang$core$Native_Utils.cmp(full, 0) > -1) ? (full - (2 * _elm_lang$core$Basics$pi)) : (full + (2 * _elm_lang$core$Basics$pi))));
+							return _opensolid$geometry$OpenSolid_Geometry_Types$Arc2d(
+								{centerPoint: centerPoint, startPoint: firstPoint, sweptAngle: sweptAngle});
+						}),
+					_opensolid$geometry$OpenSolid_Vector2d$direction(firstVector),
+					_opensolid$geometry$OpenSolid_Vector2d$direction(secondVector),
+					_opensolid$geometry$OpenSolid_Vector2d$direction(thirdVector));
+			},
+			A3(_opensolid$geometry$OpenSolid_Circle2d$throughPoints, firstPoint, secondPoint, thirdPoint));
+	});
+var _opensolid$geometry$OpenSolid_Arc2d$Long = {ctor: 'Long'};
+var _opensolid$geometry$OpenSolid_Arc2d$long = _opensolid$geometry$OpenSolid_Arc2d$Long;
+var _opensolid$geometry$OpenSolid_Arc2d$Short = {ctor: 'Short'};
+var _opensolid$geometry$OpenSolid_Arc2d$short = _opensolid$geometry$OpenSolid_Arc2d$Short;
+var _opensolid$geometry$OpenSolid_Arc2d$Counterclockwise = {ctor: 'Counterclockwise'};
+var _opensolid$geometry$OpenSolid_Arc2d$counterclockwise = _opensolid$geometry$OpenSolid_Arc2d$Counterclockwise;
+var _opensolid$geometry$OpenSolid_Arc2d$Clockwise = {ctor: 'Clockwise'};
+var _opensolid$geometry$OpenSolid_Arc2d$clockwise = _opensolid$geometry$OpenSolid_Arc2d$Clockwise;

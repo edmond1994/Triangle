@@ -1,0 +1,87 @@
+var _opensolid$geometry$OpenSolid_Geometry_Types$Vector2d = function (a) {
+	return {ctor: 'Vector2d', _0: a};
+};
+var _opensolid$geometry$OpenSolid_Geometry_Types$Vector3d = function (a) {
+	return {ctor: 'Vector3d', _0: a};
+};
+var _opensolid$geometry$OpenSolid_Geometry_Types$Direction2d = function (a) {
+	return {ctor: 'Direction2d', _0: a};
+};
+var _opensolid$geometry$OpenSolid_Geometry_Types$Direction3d = function (a) {
+	return {ctor: 'Direction3d', _0: a};
+};
+var _opensolid$geometry$OpenSolid_Geometry_Types$Point2d = function (a) {
+	return {ctor: 'Point2d', _0: a};
+};
+var _opensolid$geometry$OpenSolid_Geometry_Types$Point3d = function (a) {
+	return {ctor: 'Point3d', _0: a};
+};
+var _opensolid$geometry$OpenSolid_Geometry_Types$Axis2d = function (a) {
+	return {ctor: 'Axis2d', _0: a};
+};
+var _opensolid$geometry$OpenSolid_Geometry_Types$Axis3d = function (a) {
+	return {ctor: 'Axis3d', _0: a};
+};
+var _opensolid$geometry$OpenSolid_Geometry_Types$Plane3d = function (a) {
+	return {ctor: 'Plane3d', _0: a};
+};
+var _opensolid$geometry$OpenSolid_Geometry_Types$Frame2d = function (a) {
+	return {ctor: 'Frame2d', _0: a};
+};
+var _opensolid$geometry$OpenSolid_Geometry_Types$Frame3d = function (a) {
+	return {ctor: 'Frame3d', _0: a};
+};
+var _opensolid$geometry$OpenSolid_Geometry_Types$SketchPlane3d = function (a) {
+	return {ctor: 'SketchPlane3d', _0: a};
+};
+var _opensolid$geometry$OpenSolid_Geometry_Types$LineSegment2d = function (a) {
+	return {ctor: 'LineSegment2d', _0: a};
+};
+var _opensolid$geometry$OpenSolid_Geometry_Types$LineSegment3d = function (a) {
+	return {ctor: 'LineSegment3d', _0: a};
+};
+var _opensolid$geometry$OpenSolid_Geometry_Types$Triangle2d = function (a) {
+	return {ctor: 'Triangle2d', _0: a};
+};
+var _opensolid$geometry$OpenSolid_Geometry_Types$Triangle3d = function (a) {
+	return {ctor: 'Triangle3d', _0: a};
+};
+var _opensolid$geometry$OpenSolid_Geometry_Types$BoundingBox2d = function (a) {
+	return {ctor: 'BoundingBox2d', _0: a};
+};
+var _opensolid$geometry$OpenSolid_Geometry_Types$BoundingBox3d = function (a) {
+	return {ctor: 'BoundingBox3d', _0: a};
+};
+var _opensolid$geometry$OpenSolid_Geometry_Types$Polyline2d = function (a) {
+	return {ctor: 'Polyline2d', _0: a};
+};
+var _opensolid$geometry$OpenSolid_Geometry_Types$Polyline3d = function (a) {
+	return {ctor: 'Polyline3d', _0: a};
+};
+var _opensolid$geometry$OpenSolid_Geometry_Types$Polygon2d = function (a) {
+	return {ctor: 'Polygon2d', _0: a};
+};
+var _opensolid$geometry$OpenSolid_Geometry_Types$Circle2d = function (a) {
+	return {ctor: 'Circle2d', _0: a};
+};
+var _opensolid$geometry$OpenSolid_Geometry_Types$Circle3d = function (a) {
+	return {ctor: 'Circle3d', _0: a};
+};
+var _opensolid$geometry$OpenSolid_Geometry_Types$Arc2d = function (a) {
+	return {ctor: 'Arc2d', _0: a};
+};
+var _opensolid$geometry$OpenSolid_Geometry_Types$Arc3d = function (a) {
+	return {ctor: 'Arc3d', _0: a};
+};
+var _opensolid$geometry$OpenSolid_Geometry_Types$QuadraticSpline2d = function (a) {
+	return {ctor: 'QuadraticSpline2d', _0: a};
+};
+var _opensolid$geometry$OpenSolid_Geometry_Types$QuadraticSpline3d = function (a) {
+	return {ctor: 'QuadraticSpline3d', _0: a};
+};
+var _opensolid$geometry$OpenSolid_Geometry_Types$CubicSpline2d = function (a) {
+	return {ctor: 'CubicSpline2d', _0: a};
+};
+var _opensolid$geometry$OpenSolid_Geometry_Types$CubicSpline3d = function (a) {
+	return {ctor: 'CubicSpline3d', _0: a};
+};

@@ -1,0 +1,134 @@
+var _opensolid$geometry$OpenSolid_Direction2d$flip = _opensolid$geometry$OpenSolid_Bootstrap_Direction2d$flip;
+var _opensolid$geometry$OpenSolid_Direction2d$toVector = function (_p0) {
+	var _p1 = _p0;
+	return _opensolid$geometry$OpenSolid_Geometry_Types$Vector2d(_p1._0);
+};
+var _opensolid$geometry$OpenSolid_Direction2d$scaleBy = F2(
+	function (scale, direction) {
+		return A2(
+			_opensolid$geometry$OpenSolid_Vector2d$scaleBy,
+			scale,
+			_opensolid$geometry$OpenSolid_Direction2d$toVector(direction));
+	});
+var _opensolid$geometry$OpenSolid_Direction2d$componentIn = F2(
+	function (firstDirection, secondDirection) {
+		return A2(
+			_opensolid$geometry$OpenSolid_Vector2d$componentIn,
+			firstDirection,
+			_opensolid$geometry$OpenSolid_Direction2d$toVector(secondDirection));
+	});
+var _opensolid$geometry$OpenSolid_Direction2d$yComponent = function (_p2) {
+	var _p3 = _p2;
+	return _p3._0._1;
+};
+var _opensolid$geometry$OpenSolid_Direction2d$xComponent = function (_p4) {
+	var _p5 = _p4;
+	return _p5._0._0;
+};
+var _opensolid$geometry$OpenSolid_Direction2d$components = _opensolid$geometry$OpenSolid_Bootstrap_Direction2d$components;
+var _opensolid$geometry$OpenSolid_Direction2d$placeOnto = F2(
+	function (sketchPlane, direction) {
+		var _p6 = _opensolid$geometry$OpenSolid_Bootstrap_Direction3d$components(
+			_opensolid$geometry$OpenSolid_Bootstrap_SketchPlane3d$yDirection(sketchPlane));
+		var vx = _p6._0;
+		var vy = _p6._1;
+		var vz = _p6._2;
+		var _p7 = _opensolid$geometry$OpenSolid_Bootstrap_Direction3d$components(
+			_opensolid$geometry$OpenSolid_Bootstrap_SketchPlane3d$xDirection(sketchPlane));
+		var ux = _p7._0;
+		var uy = _p7._1;
+		var uz = _p7._2;
+		var _p8 = _opensolid$geometry$OpenSolid_Direction2d$components(direction);
+		var x = _p8._0;
+		var y = _p8._1;
+		return _opensolid$geometry$OpenSolid_Geometry_Types$Direction3d(
+			{ctor: '_Tuple3', _0: (x * ux) + (y * vx), _1: (x * uy) + (y * vy), _2: (x * uz) + (y * vz)});
+	});
+var _opensolid$geometry$OpenSolid_Direction2d$angleFrom = F2(
+	function (firstDirection, secondDirection) {
+		var secondVector = _opensolid$geometry$OpenSolid_Direction2d$toVector(secondDirection);
+		var firstVector = _opensolid$geometry$OpenSolid_Direction2d$toVector(firstDirection);
+		return A2(
+			_elm_lang$core$Basics$atan2,
+			A2(_opensolid$geometry$OpenSolid_Vector2d$crossProduct, firstVector, secondVector),
+			A2(_opensolid$geometry$OpenSolid_Vector2d$dotProduct, firstVector, secondVector));
+	});
+var _opensolid$geometry$OpenSolid_Direction2d$equalWithin = F3(
+	function (angle, firstDirection, secondDirection) {
+		return _elm_lang$core$Native_Utils.cmp(
+			_elm_lang$core$Basics$abs(
+				A2(_opensolid$geometry$OpenSolid_Direction2d$angleFrom, firstDirection, secondDirection)),
+			angle) < 1;
+	});
+var _opensolid$geometry$OpenSolid_Direction2d$toAngle = function (direction) {
+	var _p9 = _opensolid$geometry$OpenSolid_Direction2d$components(direction);
+	var x = _p9._0;
+	var y = _p9._1;
+	return A2(_elm_lang$core$Basics$atan2, y, x);
+};
+var _opensolid$geometry$OpenSolid_Direction2d$fromAngle = function (angle) {
+	return _opensolid$geometry$OpenSolid_Geometry_Types$Direction2d(
+		{
+			ctor: '_Tuple2',
+			_0: _elm_lang$core$Basics$cos(angle),
+			_1: _elm_lang$core$Basics$sin(angle)
+		});
+};
+var _opensolid$geometry$OpenSolid_Direction2d$orthogonalize = function (_p10) {
+	var _p11 = _p10;
+	return _opensolid$geometry$OpenSolid_Vector2d$orthonormalize(
+		{
+			ctor: '_Tuple2',
+			_0: _opensolid$geometry$OpenSolid_Direction2d$toVector(_p11._0),
+			_1: _opensolid$geometry$OpenSolid_Direction2d$toVector(_p11._1)
+		});
+};
+var _opensolid$geometry$OpenSolid_Direction2d$perpendicularTo = _opensolid$geometry$OpenSolid_Bootstrap_Direction2d$perpendicularTo;
+var _opensolid$geometry$OpenSolid_Direction2d$negativeY = _opensolid$geometry$OpenSolid_Geometry_Types$Direction2d(
+	{ctor: '_Tuple2', _0: 0, _1: -1});
+var _opensolid$geometry$OpenSolid_Direction2d$positiveY = _opensolid$geometry$OpenSolid_Geometry_Types$Direction2d(
+	{ctor: '_Tuple2', _0: 0, _1: 1});
+var _opensolid$geometry$OpenSolid_Direction2d$negativeX = _opensolid$geometry$OpenSolid_Geometry_Types$Direction2d(
+	{ctor: '_Tuple2', _0: -1, _1: 0});
+var _opensolid$geometry$OpenSolid_Direction2d$positiveX = _opensolid$geometry$OpenSolid_Geometry_Types$Direction2d(
+	{ctor: '_Tuple2', _0: 1, _1: 0});
+var _opensolid$geometry$OpenSolid_Direction2d$y = _opensolid$geometry$OpenSolid_Geometry_Types$Direction2d(
+	{ctor: '_Tuple2', _0: 0, _1: 1});
+var _opensolid$geometry$OpenSolid_Direction2d$x = _opensolid$geometry$OpenSolid_Geometry_Types$Direction2d(
+	{ctor: '_Tuple2', _0: 1, _1: 0});
+var _opensolid$geometry$OpenSolid_Direction2d$toDirection = function (_p12) {
+	var _p13 = _p12;
+	return _opensolid$geometry$OpenSolid_Geometry_Types$Direction2d(_p13._0);
+};
+var _opensolid$geometry$OpenSolid_Direction2d$rotateBy = F2(
+	function (angle, direction) {
+		return _opensolid$geometry$OpenSolid_Direction2d$toDirection(
+			A2(
+				_opensolid$geometry$OpenSolid_Vector2d$rotateBy,
+				angle,
+				_opensolid$geometry$OpenSolid_Direction2d$toVector(direction)));
+	});
+var _opensolid$geometry$OpenSolid_Direction2d$mirrorAcross = F2(
+	function (axis, direction) {
+		return _opensolid$geometry$OpenSolid_Direction2d$toDirection(
+			A2(
+				_opensolid$geometry$OpenSolid_Vector2d$mirrorAcross,
+				axis,
+				_opensolid$geometry$OpenSolid_Direction2d$toVector(direction)));
+	});
+var _opensolid$geometry$OpenSolid_Direction2d$relativeTo = F2(
+	function (frame, direction) {
+		return _opensolid$geometry$OpenSolid_Direction2d$toDirection(
+			A2(
+				_opensolid$geometry$OpenSolid_Vector2d$relativeTo,
+				frame,
+				_opensolid$geometry$OpenSolid_Direction2d$toVector(direction)));
+	});
+var _opensolid$geometry$OpenSolid_Direction2d$placeIn = F2(
+	function (frame, direction) {
+		return _opensolid$geometry$OpenSolid_Direction2d$toDirection(
+			A2(
+				_opensolid$geometry$OpenSolid_Vector2d$placeIn,
+				frame,
+				_opensolid$geometry$OpenSolid_Direction2d$toVector(direction)));
+	});

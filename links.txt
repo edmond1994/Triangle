@@ -1,0 +1,9 @@
+http://www.artificialworlds.net/blog/2016/08/26/elm-resizeable-svg-canvas-filling-the-screen/
+
+
+http://package.elm-lang.org/packages/elm-lang/svg/latest/Svg
+
+
+OPENSOLID:
+http://package.elm-lang.org/packages/opensolid/geometry/latest
+http://package.elm-lang.org/packages/opensolid/svg/latest

@@ -1,0 +1,10 @@
+var _opensolid$geometry$OpenSolid_Scalar$interpolateFrom = F3(
+	function (start, end, parameter) {
+		return (_elm_lang$core$Native_Utils.cmp(parameter, 0.5) < 1) ? (start + (parameter * (end - start))) : (end + ((1 - parameter) * (start - end)));
+	});
+var _opensolid$geometry$OpenSolid_Scalar$equalWithin = F3(
+	function (tolerance, firstValue, secondValue) {
+		return _elm_lang$core$Native_Utils.cmp(
+			_elm_lang$core$Basics$abs(secondValue - firstValue),
+			tolerance) < 1;
+	});

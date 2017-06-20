@@ -1,0 +1,159 @@
+var _user$project$TriangleDraw$drawText = F4(
+	function (point, tag, anchor, baseline) {
+		return A2(
+			_elm_lang$svg$Svg$g,
+			{ctor: '[]'},
+			{
+				ctor: '::',
+				_0: A3(
+					_opensolid$svg$OpenSolid_Svg$text2d,
+					{
+						ctor: '::',
+						_0: _elm_lang$svg$Svg_Attributes$textAnchor(anchor),
+						_1: {
+							ctor: '::',
+							_0: _elm_lang$svg$Svg_Attributes$alignmentBaseline(baseline),
+							_1: {
+								ctor: '::',
+								_0: _elm_lang$svg$Svg_Attributes$fill('black'),
+								_1: {ctor: '[]'}
+							}
+						}
+					},
+					point,
+					tag),
+				_1: {ctor: '[]'}
+			});
+	});
+var _user$project$TriangleDraw$renderSolid = F2(
+	function (_p1, _p0) {
+		var _p2 = _p1;
+		var _p3 = _p0;
+		return _opensolid$svg$OpenSolid_Svg$render2d(
+			_opensolid$geometry$OpenSolid_Geometry_Types$BoundingBox2d(
+				{minX: _p2._0, maxX: _p3._0, minY: _p2._1, maxY: _p3._1}));
+	});
+var _user$project$TriangleDraw$renderSolid_classic = F2(
+	function (_p5, _p4) {
+		var _p6 = _p5;
+		var _p7 = _p4;
+		return _opensolid$svg$OpenSolid_Svg$render2d(
+			_opensolid$geometry$OpenSolid_Geometry_Types$BoundingBox2d(
+				{minX: _p6._0, maxX: _p7._0, minY: _p6._1, maxY: _p7._1}));
+	});
+var _user$project$TriangleDraw$point_color_correct = 'black';
+var _user$project$TriangleDraw$drawPointOfUser = function () {
+	var point_color = _user$project$TriangleDraw$point_color_correct;
+	return _opensolid$svg$OpenSolid_Svg$point2d(
+		{
+			radius: 5,
+			attributes: {
+				ctor: '::',
+				_0: _elm_lang$svg$Svg_Attributes$stroke('black'),
+				_1: {
+					ctor: '::',
+					_0: _elm_lang$svg$Svg_Attributes$fill(point_color),
+					_1: {ctor: '[]'}
+				}
+			}
+		});
+}();
+var _user$project$TriangleDraw$drawTriangleAndPoint = function (_p8) {
+	var _p9 = _p8;
+	var y_point = _p9._7;
+	var x_point = _p9._6;
+	var userPoint = _opensolid$geometry$OpenSolid_Geometry_Types$Point2d(
+		{ctor: '_Tuple2', _0: x_point, _1: y_point});
+	var y_vertice_3 = _p9._5;
+	var x_vertice_3 = _p9._4;
+	var p3 = _opensolid$geometry$OpenSolid_Geometry_Types$Point2d(
+		{ctor: '_Tuple2', _0: x_vertice_3, _1: y_vertice_3});
+	var y_vertice_2 = _p9._3;
+	var x_vertice_2 = _p9._2;
+	var p2 = _opensolid$geometry$OpenSolid_Geometry_Types$Point2d(
+		{ctor: '_Tuple2', _0: x_vertice_2, _1: y_vertice_2});
+	var y_vertice_1 = _p9._1;
+	var x_vertice_1 = _p9._0;
+	var p1 = _opensolid$geometry$OpenSolid_Geometry_Types$Point2d(
+		{ctor: '_Tuple2', _0: x_vertice_1, _1: y_vertice_1});
+	return A2(
+		_elm_lang$svg$Svg$g,
+		{ctor: '[]'},
+		{
+			ctor: '::',
+			_0: A2(
+				_opensolid$svg$OpenSolid_Svg$triangle2d,
+				{
+					ctor: '::',
+					_0: _elm_lang$svg$Svg_Attributes$stroke('blue'),
+					_1: {
+						ctor: '::',
+						_0: _elm_lang$svg$Svg_Attributes$strokeWidth('5'),
+						_1: {
+							ctor: '::',
+							_0: _elm_lang$svg$Svg_Attributes$strokeLinejoin('round'),
+							_1: {
+								ctor: '::',
+								_0: _elm_lang$svg$Svg_Attributes$fill('white'),
+								_1: {ctor: '[]'}
+							}
+						}
+					}
+				},
+				_opensolid$geometry$OpenSolid_Geometry_Types$Triangle2d(
+					{ctor: '_Tuple3', _0: p1, _1: p2, _2: p3})),
+			_1: {
+				ctor: '::',
+				_0: _user$project$TriangleDraw$drawPointOfUser(userPoint),
+				_1: {
+					ctor: '::',
+					_0: A4(_user$project$TriangleDraw$drawText, p1, '(0,0)', 'start', 'baseline'),
+					_1: {
+						ctor: '::',
+						_0: A4(_user$project$TriangleDraw$drawText, p2, '(0,0)', 'start', 'baseline'),
+						_1: {
+							ctor: '::',
+							_0: A4(_user$project$TriangleDraw$drawText, p3, '(0,0)', 'start', 'baseline'),
+							_1: {
+								ctor: '::',
+								_0: A4(_user$project$TriangleDraw$drawText, userPoint, '(0,0)', 'start', 'baseline'),
+								_1: {ctor: '[]'}
+							}
+						}
+					}
+				}
+			}
+		});
+};
+var _user$project$TriangleDraw$customVisual = function () {
+	var area_height = 500;
+	var area_width = 500;
+	var base_height = 0;
+	var base_width = 0;
+	return A3(
+		_user$project$TriangleDraw$renderSolid,
+		{ctor: '_Tuple2', _0: base_width, _1: base_height},
+		{ctor: '_Tuple2', _0: base_width + area_width, _1: base_height + area_height},
+		_user$project$TriangleDraw$drawTriangleAndPoint(
+			{ctor: '_Tuple8', _0: 100, _1: 100, _2: 100, _3: 200, _4: 200, _5: 100, _6: 110, _7: 190}));
+}();
+var _user$project$TriangleDraw$main = _elm_lang$virtual_dom$Native_VirtualDom.staticProgram(
+	A2(
+		_elm_lang$html$Html$div,
+		{ctor: '[]'},
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html$text('An example:'),
+			_1: {
+				ctor: '::',
+				_0: A2(
+					_elm_lang$html$Html$div,
+					{ctor: '[]'},
+					{
+						ctor: '::',
+						_0: _user$project$TriangleDraw$customVisual,
+						_1: {ctor: '[]'}
+					}),
+				_1: {ctor: '[]'}
+			}
+		}));

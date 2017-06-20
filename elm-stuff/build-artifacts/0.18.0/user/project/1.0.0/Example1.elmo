@@ -1,0 +1,45 @@
+var _user$project$Example1$names = {
+	ctor: '::',
+	_0: 'Alice',
+	_1: {
+		ctor: '::',
+		_0: 'Bob',
+		_1: {
+			ctor: '::',
+			_0: 'Chuck',
+			_1: {ctor: '[]'}
+		}
+	}
+};
+var _user$project$Example1$over9000 = function (powerLevel) {
+	return (_elm_lang$core$Native_Utils.cmp(powerLevel, 9000) > 0) ? 'It\'s over 9000!!!' : 'meh';
+};
+var _user$project$Example1$main = _elm_lang$virtual_dom$Native_VirtualDom.staticProgram(
+	A2(
+		_elm_lang$html$Html$div,
+		{ctor: '[]'},
+		{
+			ctor: '::',
+			_0: A2(
+				_elm_lang$html$Html$div,
+				{ctor: '[]'},
+				{
+					ctor: '::',
+					_0: _elm_lang$html$Html$text(
+						_user$project$Example1$over9000(42)),
+					_1: {ctor: '[]'}
+				}),
+			_1: {
+				ctor: '::',
+				_0: A2(
+					_elm_lang$html$Html$div,
+					{ctor: '[]'},
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html$text(
+							_user$project$Example1$over9000(111142)),
+						_1: {ctor: '[]'}
+					}),
+				_1: {ctor: '[]'}
+			}
+		}));

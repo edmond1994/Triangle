@@ -1,0 +1,199 @@
+var _opensolid$geometry$OpenSolid_BoundingBox3d$maxZ = function (_p0) {
+	var _p1 = _p0;
+	return _p1._0.maxZ;
+};
+var _opensolid$geometry$OpenSolid_BoundingBox3d$minZ = function (_p2) {
+	var _p3 = _p2;
+	return _p3._0.minZ;
+};
+var _opensolid$geometry$OpenSolid_BoundingBox3d$maxY = function (_p4) {
+	var _p5 = _p4;
+	return _p5._0.maxY;
+};
+var _opensolid$geometry$OpenSolid_BoundingBox3d$minY = function (_p6) {
+	var _p7 = _p6;
+	return _p7._0.minY;
+};
+var _opensolid$geometry$OpenSolid_BoundingBox3d$maxX = function (_p8) {
+	var _p9 = _p8;
+	return _p9._0.maxX;
+};
+var _opensolid$geometry$OpenSolid_BoundingBox3d$minX = function (_p10) {
+	var _p11 = _p10;
+	return _p11._0.minX;
+};
+var _opensolid$geometry$OpenSolid_BoundingBox3d$contains = F2(
+	function (point, boundingBox) {
+		var _p12 = _opensolid$geometry$OpenSolid_Point3d$coordinates(point);
+		var x = _p12._0;
+		var y = _p12._1;
+		var z = _p12._2;
+		return ((_elm_lang$core$Native_Utils.cmp(
+			_opensolid$geometry$OpenSolid_BoundingBox3d$minX(boundingBox),
+			x) < 1) && (_elm_lang$core$Native_Utils.cmp(
+			x,
+			_opensolid$geometry$OpenSolid_BoundingBox3d$maxX(boundingBox)) < 1)) && (((_elm_lang$core$Native_Utils.cmp(
+			_opensolid$geometry$OpenSolid_BoundingBox3d$minY(boundingBox),
+			y) < 1) && (_elm_lang$core$Native_Utils.cmp(
+			y,
+			_opensolid$geometry$OpenSolid_BoundingBox3d$maxY(boundingBox)) < 1)) && ((_elm_lang$core$Native_Utils.cmp(
+			_opensolid$geometry$OpenSolid_BoundingBox3d$minZ(boundingBox),
+			z) < 1) && (_elm_lang$core$Native_Utils.cmp(
+			z,
+			_opensolid$geometry$OpenSolid_BoundingBox3d$maxZ(boundingBox)) < 1)));
+	});
+var _opensolid$geometry$OpenSolid_BoundingBox3d$overlaps = F2(
+	function (other, boundingBox) {
+		return (_elm_lang$core$Native_Utils.cmp(
+			_opensolid$geometry$OpenSolid_BoundingBox3d$minX(boundingBox),
+			_opensolid$geometry$OpenSolid_BoundingBox3d$maxX(other)) < 1) && ((_elm_lang$core$Native_Utils.cmp(
+			_opensolid$geometry$OpenSolid_BoundingBox3d$maxX(boundingBox),
+			_opensolid$geometry$OpenSolid_BoundingBox3d$minX(other)) > -1) && ((_elm_lang$core$Native_Utils.cmp(
+			_opensolid$geometry$OpenSolid_BoundingBox3d$minY(boundingBox),
+			_opensolid$geometry$OpenSolid_BoundingBox3d$maxY(other)) < 1) && ((_elm_lang$core$Native_Utils.cmp(
+			_opensolid$geometry$OpenSolid_BoundingBox3d$maxY(boundingBox),
+			_opensolid$geometry$OpenSolid_BoundingBox3d$minY(other)) > -1) && ((_elm_lang$core$Native_Utils.cmp(
+			_opensolid$geometry$OpenSolid_BoundingBox3d$minZ(boundingBox),
+			_opensolid$geometry$OpenSolid_BoundingBox3d$maxZ(other)) < 1) && (_elm_lang$core$Native_Utils.cmp(
+			_opensolid$geometry$OpenSolid_BoundingBox3d$maxZ(boundingBox),
+			_opensolid$geometry$OpenSolid_BoundingBox3d$minZ(other)) > -1)))));
+	});
+var _opensolid$geometry$OpenSolid_BoundingBox3d$isContainedIn = F2(
+	function (other, boundingBox) {
+		return ((_elm_lang$core$Native_Utils.cmp(
+			_opensolid$geometry$OpenSolid_BoundingBox3d$minX(other),
+			_opensolid$geometry$OpenSolid_BoundingBox3d$minX(boundingBox)) < 1) && (_elm_lang$core$Native_Utils.cmp(
+			_opensolid$geometry$OpenSolid_BoundingBox3d$maxX(boundingBox),
+			_opensolid$geometry$OpenSolid_BoundingBox3d$maxX(other)) < 1)) && (((_elm_lang$core$Native_Utils.cmp(
+			_opensolid$geometry$OpenSolid_BoundingBox3d$minY(other),
+			_opensolid$geometry$OpenSolid_BoundingBox3d$minY(boundingBox)) < 1) && (_elm_lang$core$Native_Utils.cmp(
+			_opensolid$geometry$OpenSolid_BoundingBox3d$maxY(boundingBox),
+			_opensolid$geometry$OpenSolid_BoundingBox3d$maxY(other)) < 1)) && ((_elm_lang$core$Native_Utils.cmp(
+			_opensolid$geometry$OpenSolid_BoundingBox3d$minZ(other),
+			_opensolid$geometry$OpenSolid_BoundingBox3d$minZ(boundingBox)) < 1) && (_elm_lang$core$Native_Utils.cmp(
+			_opensolid$geometry$OpenSolid_BoundingBox3d$maxZ(boundingBox),
+			_opensolid$geometry$OpenSolid_BoundingBox3d$maxZ(other)) < 1)));
+	});
+var _opensolid$geometry$OpenSolid_BoundingBox3d$hull = F2(
+	function (firstBox, secondBox) {
+		return _opensolid$geometry$OpenSolid_Geometry_Types$BoundingBox3d(
+			{
+				minX: A2(
+					_elm_lang$core$Basics$min,
+					_opensolid$geometry$OpenSolid_BoundingBox3d$minX(firstBox),
+					_opensolid$geometry$OpenSolid_BoundingBox3d$minX(secondBox)),
+				maxX: A2(
+					_elm_lang$core$Basics$max,
+					_opensolid$geometry$OpenSolid_BoundingBox3d$maxX(firstBox),
+					_opensolid$geometry$OpenSolid_BoundingBox3d$maxX(secondBox)),
+				minY: A2(
+					_elm_lang$core$Basics$min,
+					_opensolid$geometry$OpenSolid_BoundingBox3d$minY(firstBox),
+					_opensolid$geometry$OpenSolid_BoundingBox3d$minY(secondBox)),
+				maxY: A2(
+					_elm_lang$core$Basics$max,
+					_opensolid$geometry$OpenSolid_BoundingBox3d$maxY(firstBox),
+					_opensolid$geometry$OpenSolid_BoundingBox3d$maxY(secondBox)),
+				minZ: A2(
+					_elm_lang$core$Basics$min,
+					_opensolid$geometry$OpenSolid_BoundingBox3d$minZ(firstBox),
+					_opensolid$geometry$OpenSolid_BoundingBox3d$minZ(secondBox)),
+				maxZ: A2(
+					_elm_lang$core$Basics$max,
+					_opensolid$geometry$OpenSolid_BoundingBox3d$maxZ(firstBox),
+					_opensolid$geometry$OpenSolid_BoundingBox3d$maxZ(secondBox))
+			});
+	});
+var _opensolid$geometry$OpenSolid_BoundingBox3d$intersection = F2(
+	function (firstBox, secondBox) {
+		return A2(_opensolid$geometry$OpenSolid_BoundingBox3d$overlaps, firstBox, secondBox) ? _elm_lang$core$Maybe$Just(
+			_opensolid$geometry$OpenSolid_Geometry_Types$BoundingBox3d(
+				{
+					minX: A2(
+						_elm_lang$core$Basics$max,
+						_opensolid$geometry$OpenSolid_BoundingBox3d$minX(firstBox),
+						_opensolid$geometry$OpenSolid_BoundingBox3d$minX(secondBox)),
+					maxX: A2(
+						_elm_lang$core$Basics$min,
+						_opensolid$geometry$OpenSolid_BoundingBox3d$maxX(firstBox),
+						_opensolid$geometry$OpenSolid_BoundingBox3d$maxX(secondBox)),
+					minY: A2(
+						_elm_lang$core$Basics$max,
+						_opensolid$geometry$OpenSolid_BoundingBox3d$minY(firstBox),
+						_opensolid$geometry$OpenSolid_BoundingBox3d$minY(secondBox)),
+					maxY: A2(
+						_elm_lang$core$Basics$min,
+						_opensolid$geometry$OpenSolid_BoundingBox3d$maxY(firstBox),
+						_opensolid$geometry$OpenSolid_BoundingBox3d$maxY(secondBox)),
+					minZ: A2(
+						_elm_lang$core$Basics$max,
+						_opensolid$geometry$OpenSolid_BoundingBox3d$minZ(firstBox),
+						_opensolid$geometry$OpenSolid_BoundingBox3d$minZ(secondBox)),
+					maxZ: A2(
+						_elm_lang$core$Basics$min,
+						_opensolid$geometry$OpenSolid_BoundingBox3d$maxZ(firstBox),
+						_opensolid$geometry$OpenSolid_BoundingBox3d$maxZ(secondBox))
+				})) : _elm_lang$core$Maybe$Nothing;
+	});
+var _opensolid$geometry$OpenSolid_BoundingBox3d$extrema = function (_p13) {
+	var _p14 = _p13;
+	return _p14._0;
+};
+var _opensolid$geometry$OpenSolid_BoundingBox3d$dimensions = function (boundingBox) {
+	var _p15 = _opensolid$geometry$OpenSolid_BoundingBox3d$extrema(boundingBox);
+	var minX = _p15.minX;
+	var maxX = _p15.maxX;
+	var minY = _p15.minY;
+	var maxY = _p15.maxY;
+	var minZ = _p15.minZ;
+	var maxZ = _p15.maxZ;
+	return {ctor: '_Tuple3', _0: maxX - minX, _1: maxY - minY, _2: maxZ - minZ};
+};
+var _opensolid$geometry$OpenSolid_BoundingBox3d$midX = function (boundingBox) {
+	var _p16 = _opensolid$geometry$OpenSolid_BoundingBox3d$extrema(boundingBox);
+	var minX = _p16.minX;
+	var maxX = _p16.maxX;
+	return minX + (0.5 * (maxX - minX));
+};
+var _opensolid$geometry$OpenSolid_BoundingBox3d$midY = function (boundingBox) {
+	var _p17 = _opensolid$geometry$OpenSolid_BoundingBox3d$extrema(boundingBox);
+	var minY = _p17.minY;
+	var maxY = _p17.maxY;
+	return minY + (0.5 * (maxY - minY));
+};
+var _opensolid$geometry$OpenSolid_BoundingBox3d$midZ = function (boundingBox) {
+	var _p18 = _opensolid$geometry$OpenSolid_BoundingBox3d$extrema(boundingBox);
+	var minZ = _p18.minZ;
+	var maxZ = _p18.maxZ;
+	return minZ + (0.5 * (maxZ - minZ));
+};
+var _opensolid$geometry$OpenSolid_BoundingBox3d$centroid = function (boundingBox) {
+	return _opensolid$geometry$OpenSolid_Geometry_Types$Point3d(
+		{
+			ctor: '_Tuple3',
+			_0: _opensolid$geometry$OpenSolid_BoundingBox3d$midX(boundingBox),
+			_1: _opensolid$geometry$OpenSolid_BoundingBox3d$midY(boundingBox),
+			_2: _opensolid$geometry$OpenSolid_BoundingBox3d$midZ(boundingBox)
+		});
+};
+var _opensolid$geometry$OpenSolid_BoundingBox3d$hullOf = function (boundingBoxes) {
+	var _p19 = boundingBoxes;
+	if (_p19.ctor === '::') {
+		return _elm_lang$core$Maybe$Just(
+			A3(_elm_lang$core$List$foldl, _opensolid$geometry$OpenSolid_BoundingBox3d$hull, _p19._0, _p19._1));
+	} else {
+		return _elm_lang$core$Maybe$Nothing;
+	}
+};
+var _opensolid$geometry$OpenSolid_BoundingBox3d$singleton = function (point) {
+	var _p20 = _opensolid$geometry$OpenSolid_Point3d$coordinates(point);
+	var x = _p20._0;
+	var y = _p20._1;
+	var z = _p20._2;
+	return _opensolid$geometry$OpenSolid_Geometry_Types$BoundingBox3d(
+		{minX: x, maxX: x, minY: y, maxY: y, minZ: z, maxZ: z});
+};
+var _opensolid$geometry$OpenSolid_BoundingBox3d$containing = function (points) {
+	return _opensolid$geometry$OpenSolid_BoundingBox3d$hullOf(
+		A2(_elm_lang$core$List$map, _opensolid$geometry$OpenSolid_BoundingBox3d$singleton, points));
+};

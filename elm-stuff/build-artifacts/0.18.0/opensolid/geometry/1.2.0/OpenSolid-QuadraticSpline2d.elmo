@@ -1,0 +1,114 @@
+var _opensolid$geometry$OpenSolid_QuadraticSpline2d$endPoint = function (_p0) {
+	var _p1 = _p0;
+	return _p1._0._2;
+};
+var _opensolid$geometry$OpenSolid_QuadraticSpline2d$startPoint = function (_p2) {
+	var _p3 = _p2;
+	return _p3._0._0;
+};
+var _opensolid$geometry$OpenSolid_QuadraticSpline2d$controlPoints = function (_p4) {
+	var _p5 = _p4;
+	return _p5._0;
+};
+var _opensolid$geometry$OpenSolid_QuadraticSpline2d$startDerivative = function (spline) {
+	var _p6 = _opensolid$geometry$OpenSolid_QuadraticSpline2d$controlPoints(spline);
+	var p1 = _p6._0;
+	var p2 = _p6._1;
+	return A2(
+		_opensolid$geometry$OpenSolid_Vector2d$scaleBy,
+		2,
+		A2(_opensolid$geometry$OpenSolid_Point2d$vectorFrom, p1, p2));
+};
+var _opensolid$geometry$OpenSolid_QuadraticSpline2d$endDerivative = function (spline) {
+	var _p7 = _opensolid$geometry$OpenSolid_QuadraticSpline2d$controlPoints(spline);
+	var p2 = _p7._1;
+	var p3 = _p7._2;
+	return A2(
+		_opensolid$geometry$OpenSolid_Vector2d$scaleBy,
+		2,
+		A2(_opensolid$geometry$OpenSolid_Point2d$vectorFrom, p2, p3));
+};
+var _opensolid$geometry$OpenSolid_QuadraticSpline2d$point = F2(
+	function (spline, t) {
+		var _p8 = _opensolid$geometry$OpenSolid_QuadraticSpline2d$controlPoints(spline);
+		var p1 = _p8._0;
+		var p2 = _p8._1;
+		var p3 = _p8._2;
+		var q1 = A3(_opensolid$geometry$OpenSolid_Point2d$interpolateFrom, p1, p2, t);
+		var q2 = A3(_opensolid$geometry$OpenSolid_Point2d$interpolateFrom, p2, p3, t);
+		return A3(_opensolid$geometry$OpenSolid_Point2d$interpolateFrom, q1, q2, t);
+	});
+var _opensolid$geometry$OpenSolid_QuadraticSpline2d$derivative = function (spline) {
+	var _p9 = _opensolid$geometry$OpenSolid_QuadraticSpline2d$controlPoints(spline);
+	var p1 = _p9._0;
+	var p2 = _p9._1;
+	var p3 = _p9._2;
+	var v1 = A2(_opensolid$geometry$OpenSolid_Point2d$vectorFrom, p1, p2);
+	var v2 = A2(_opensolid$geometry$OpenSolid_Point2d$vectorFrom, p2, p3);
+	return function (t) {
+		return A2(
+			_opensolid$geometry$OpenSolid_Vector2d$scaleBy,
+			2,
+			A3(_opensolid$geometry$OpenSolid_Vector2d$interpolateFrom, v1, v2, t));
+	};
+};
+var _opensolid$geometry$OpenSolid_QuadraticSpline2d$mapControlPoints = F2(
+	function ($function, spline) {
+		var _p10 = _opensolid$geometry$OpenSolid_QuadraticSpline2d$controlPoints(spline);
+		var p1 = _p10._0;
+		var p2 = _p10._1;
+		var p3 = _p10._2;
+		return _opensolid$geometry$OpenSolid_Geometry_Types$QuadraticSpline2d(
+			{
+				ctor: '_Tuple3',
+				_0: $function(p1),
+				_1: $function(p2),
+				_2: $function(p3)
+			});
+	});
+var _opensolid$geometry$OpenSolid_QuadraticSpline2d$scaleAbout = F2(
+	function (point, scale) {
+		return _opensolid$geometry$OpenSolid_QuadraticSpline2d$mapControlPoints(
+			A2(_opensolid$geometry$OpenSolid_Point2d$scaleAbout, point, scale));
+	});
+var _opensolid$geometry$OpenSolid_QuadraticSpline2d$rotateAround = F2(
+	function (point, angle) {
+		return _opensolid$geometry$OpenSolid_QuadraticSpline2d$mapControlPoints(
+			A2(_opensolid$geometry$OpenSolid_Point2d$rotateAround, point, angle));
+	});
+var _opensolid$geometry$OpenSolid_QuadraticSpline2d$translateBy = function (displacement) {
+	return _opensolid$geometry$OpenSolid_QuadraticSpline2d$mapControlPoints(
+		_opensolid$geometry$OpenSolid_Point2d$translateBy(displacement));
+};
+var _opensolid$geometry$OpenSolid_QuadraticSpline2d$mirrorAcross = function (axis) {
+	return _opensolid$geometry$OpenSolid_QuadraticSpline2d$mapControlPoints(
+		_opensolid$geometry$OpenSolid_Point2d$mirrorAcross(axis));
+};
+var _opensolid$geometry$OpenSolid_QuadraticSpline2d$relativeTo = function (frame) {
+	return _opensolid$geometry$OpenSolid_QuadraticSpline2d$mapControlPoints(
+		_opensolid$geometry$OpenSolid_Point2d$relativeTo(frame));
+};
+var _opensolid$geometry$OpenSolid_QuadraticSpline2d$placeIn = function (frame) {
+	return _opensolid$geometry$OpenSolid_QuadraticSpline2d$mapControlPoints(
+		_opensolid$geometry$OpenSolid_Point2d$placeIn(frame));
+};
+var _opensolid$geometry$OpenSolid_QuadraticSpline2d$placeOnto = F2(
+	function (sketchPlane, spline) {
+		var place = _opensolid$geometry$OpenSolid_Point2d$placeOnto(sketchPlane);
+		var _p11 = _opensolid$geometry$OpenSolid_QuadraticSpline2d$controlPoints(spline);
+		var p1 = _p11._0;
+		var p2 = _p11._1;
+		var p3 = _p11._2;
+		return _opensolid$geometry$OpenSolid_Geometry_Types$QuadraticSpline3d(
+			{
+				ctor: '_Tuple3',
+				_0: place(p1),
+				_1: place(p2),
+				_2: place(p3)
+			});
+	});
+var _opensolid$geometry$OpenSolid_QuadraticSpline2d$bezier = F3(
+	function (firstPoint, secondPoint, thirdPoint) {
+		return _opensolid$geometry$OpenSolid_Geometry_Types$QuadraticSpline2d(
+			{ctor: '_Tuple3', _0: firstPoint, _1: secondPoint, _2: thirdPoint});
+	});

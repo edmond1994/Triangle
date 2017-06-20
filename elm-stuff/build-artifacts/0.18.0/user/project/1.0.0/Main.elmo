@@ -1,0 +1,535 @@
+var _user$project$Main$visualizeTriangle = function (model_triangle) {
+	return 0;
+};
+var _user$project$Main$computeForSide = F3(
+	function (_p2, _p1, _p0) {
+		var _p3 = _p2;
+		var _p7 = _p3._1;
+		var _p6 = _p3._0;
+		var _p4 = _p1;
+		var _p5 = _p0;
+		return ((_p6 - _p5._0) * (_p4._1 - _p7)) - ((_p4._0 - _p6) * (_p7 - _p5._1));
+	});
+var _user$project$Main$computeForTriangle = F4(
+	function (_p11, _p10, _p9, _p8) {
+		var _p12 = _p11;
+		var _p23 = _p12._1;
+		var _p22 = _p12._0;
+		var _p13 = _p10;
+		var _p21 = _p13._1;
+		var _p20 = _p13._0;
+		var _p14 = _p9;
+		var _p19 = _p14._1;
+		var _p18 = _p14._0;
+		var _p15 = _p8;
+		var _p17 = _p15._1;
+		var _p16 = _p15._0;
+		return ((_elm_lang$core$Native_Utils.cmp(
+			A3(
+				_user$project$Main$computeForSide,
+				{ctor: '_Tuple2', _0: _p22, _1: _p23},
+				{ctor: '_Tuple2', _0: _p20, _1: _p21},
+				{ctor: '_Tuple2', _0: _p16, _1: _p17}),
+			0) > 0) && ((_elm_lang$core$Native_Utils.cmp(
+			A3(
+				_user$project$Main$computeForSide,
+				{ctor: '_Tuple2', _0: _p20, _1: _p21},
+				{ctor: '_Tuple2', _0: _p18, _1: _p19},
+				{ctor: '_Tuple2', _0: _p16, _1: _p17}),
+			0) > 0) && (_elm_lang$core$Native_Utils.cmp(
+			A3(
+				_user$project$Main$computeForSide,
+				{ctor: '_Tuple2', _0: _p18, _1: _p19},
+				{ctor: '_Tuple2', _0: _p22, _1: _p23},
+				{ctor: '_Tuple2', _0: _p16, _1: _p17}),
+			0) > 0))) || ((_elm_lang$core$Native_Utils.cmp(
+			A3(
+				_user$project$Main$computeForSide,
+				{ctor: '_Tuple2', _0: _p22, _1: _p23},
+				{ctor: '_Tuple2', _0: _p20, _1: _p21},
+				{ctor: '_Tuple2', _0: _p16, _1: _p17}),
+			0) < 0) && ((_elm_lang$core$Native_Utils.cmp(
+			A3(
+				_user$project$Main$computeForSide,
+				{ctor: '_Tuple2', _0: _p20, _1: _p21},
+				{ctor: '_Tuple2', _0: _p18, _1: _p19},
+				{ctor: '_Tuple2', _0: _p16, _1: _p17}),
+			0) < 0) && (_elm_lang$core$Native_Utils.cmp(
+			A3(
+				_user$project$Main$computeForSide,
+				{ctor: '_Tuple2', _0: _p18, _1: _p19},
+				{ctor: '_Tuple2', _0: _p22, _1: _p23},
+				{ctor: '_Tuple2', _0: _p16, _1: _p17}),
+			0) < 0)));
+	});
+var _user$project$Main$filter_Input = function (numstring) {
+	return _elm_lang$core$String$trim(numstring);
+};
+var _user$project$Main$simpleToFloat = function (numstring) {
+	return A2(
+		_elm_lang$core$Result$withDefault,
+		0,
+		_elm_lang$core$String$toFloat(
+			_user$project$Main$filter_Input(numstring)));
+};
+var _user$project$Main$update = F2(
+	function (msg, model) {
+		var _p24 = msg;
+		switch (_p24.ctor) {
+			case 'X0':
+				return _elm_lang$core$Native_Utils.update(
+					model,
+					{
+						x0: _user$project$Main$simpleToFloat(_p24._0)
+					});
+			case 'X1':
+				return _elm_lang$core$Native_Utils.update(
+					model,
+					{
+						x1: _user$project$Main$simpleToFloat(_p24._0)
+					});
+			case 'X2':
+				return _elm_lang$core$Native_Utils.update(
+					model,
+					{
+						x2: _user$project$Main$simpleToFloat(_p24._0)
+					});
+			case 'X3':
+				return _elm_lang$core$Native_Utils.update(
+					model,
+					{
+						x3: _user$project$Main$simpleToFloat(_p24._0)
+					});
+			case 'Y0':
+				return _elm_lang$core$Native_Utils.update(
+					model,
+					{
+						y0: _user$project$Main$simpleToFloat(_p24._0)
+					});
+			case 'Y1':
+				return _elm_lang$core$Native_Utils.update(
+					model,
+					{
+						y1: _user$project$Main$simpleToFloat(_p24._0)
+					});
+			case 'Y2':
+				return _elm_lang$core$Native_Utils.update(
+					model,
+					{
+						y2: _user$project$Main$simpleToFloat(_p24._0)
+					});
+			default:
+				return _elm_lang$core$Native_Utils.update(
+					model,
+					{
+						y3: _user$project$Main$simpleToFloat(_p24._0)
+					});
+		}
+	});
+var _user$project$Main$Model = F8(
+	function (a, b, c, d, e, f, g, h) {
+		return {x1: a, y1: b, x2: c, y2: d, x3: e, y3: f, x0: g, y0: h};
+	});
+var _user$project$Main$model = A8(_user$project$Main$Model, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+var _user$project$Main$Y0 = function (a) {
+	return {ctor: 'Y0', _0: a};
+};
+var _user$project$Main$X0 = function (a) {
+	return {ctor: 'X0', _0: a};
+};
+var _user$project$Main$Y3 = function (a) {
+	return {ctor: 'Y3', _0: a};
+};
+var _user$project$Main$X3 = function (a) {
+	return {ctor: 'X3', _0: a};
+};
+var _user$project$Main$Y2 = function (a) {
+	return {ctor: 'Y2', _0: a};
+};
+var _user$project$Main$X2 = function (a) {
+	return {ctor: 'X2', _0: a};
+};
+var _user$project$Main$Y1 = function (a) {
+	return {ctor: 'Y1', _0: a};
+};
+var _user$project$Main$X1 = function (a) {
+	return {ctor: 'X1', _0: a};
+};
+var _user$project$Main$view = function (model) {
+	return A2(
+		_elm_lang$html$Html$div,
+		{ctor: '[]'},
+		{
+			ctor: '::',
+			_0: A2(
+				_elm_lang$html$Html$div,
+				{ctor: '[]'},
+				{
+					ctor: '::',
+					_0: _elm_lang$html$Html$text('Input coordinates: '),
+					_1: {
+						ctor: '::',
+						_0: _elm_lang$html$Html$text('   X coordinate  '),
+						_1: {
+							ctor: '::',
+							_0: _elm_lang$html$Html$text('   Y coordinate  '),
+							_1: {ctor: '[]'}
+						}
+					}
+				}),
+			_1: {
+				ctor: '::',
+				_0: A2(
+					_elm_lang$html$Html$div,
+					{ctor: '[]'},
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html$text('Vertice 1: '),
+						_1: {
+							ctor: '::',
+							_0: A2(
+								_elm_lang$html$Html$input,
+								{
+									ctor: '::',
+									_0: _elm_lang$html$Html_Attributes$type_('text'),
+									_1: {
+										ctor: '::',
+										_0: _elm_lang$html$Html_Attributes$placeholder('X = 0'),
+										_1: {
+											ctor: '::',
+											_0: _elm_lang$html$Html_Events$onInput(_user$project$Main$X1),
+											_1: {ctor: '[]'}
+										}
+									}
+								},
+								{ctor: '[]'}),
+							_1: {
+								ctor: '::',
+								_0: A2(
+									_elm_lang$html$Html$input,
+									{
+										ctor: '::',
+										_0: _elm_lang$html$Html_Attributes$type_('text'),
+										_1: {
+											ctor: '::',
+											_0: _elm_lang$html$Html_Attributes$placeholder('Y = 0'),
+											_1: {
+												ctor: '::',
+												_0: _elm_lang$html$Html_Events$onInput(_user$project$Main$Y1),
+												_1: {ctor: '[]'}
+											}
+										}
+									},
+									{ctor: '[]'}),
+								_1: {ctor: '[]'}
+							}
+						}
+					}),
+				_1: {
+					ctor: '::',
+					_0: A2(
+						_elm_lang$html$Html$div,
+						{ctor: '[]'},
+						{
+							ctor: '::',
+							_0: _elm_lang$html$Html$text('Vertice 2: '),
+							_1: {
+								ctor: '::',
+								_0: A2(
+									_elm_lang$html$Html$input,
+									{
+										ctor: '::',
+										_0: _elm_lang$html$Html_Attributes$type_('text'),
+										_1: {
+											ctor: '::',
+											_0: _elm_lang$html$Html_Attributes$placeholder('X = 0'),
+											_1: {
+												ctor: '::',
+												_0: _elm_lang$html$Html_Events$onInput(_user$project$Main$X2),
+												_1: {ctor: '[]'}
+											}
+										}
+									},
+									{ctor: '[]'}),
+								_1: {
+									ctor: '::',
+									_0: A2(
+										_elm_lang$html$Html$input,
+										{
+											ctor: '::',
+											_0: _elm_lang$html$Html_Attributes$type_('text'),
+											_1: {
+												ctor: '::',
+												_0: _elm_lang$html$Html_Attributes$placeholder('Y = 0'),
+												_1: {
+													ctor: '::',
+													_0: _elm_lang$html$Html_Events$onInput(_user$project$Main$Y2),
+													_1: {ctor: '[]'}
+												}
+											}
+										},
+										{ctor: '[]'}),
+									_1: {ctor: '[]'}
+								}
+							}
+						}),
+					_1: {
+						ctor: '::',
+						_0: A2(
+							_elm_lang$html$Html$div,
+							{ctor: '[]'},
+							{
+								ctor: '::',
+								_0: _elm_lang$html$Html$text('Vertice 3: '),
+								_1: {
+									ctor: '::',
+									_0: A2(
+										_elm_lang$html$Html$input,
+										{
+											ctor: '::',
+											_0: _elm_lang$html$Html_Attributes$type_('text'),
+											_1: {
+												ctor: '::',
+												_0: _elm_lang$html$Html_Attributes$placeholder('X = 0'),
+												_1: {
+													ctor: '::',
+													_0: _elm_lang$html$Html_Events$onInput(_user$project$Main$X3),
+													_1: {ctor: '[]'}
+												}
+											}
+										},
+										{ctor: '[]'}),
+									_1: {
+										ctor: '::',
+										_0: A2(
+											_elm_lang$html$Html$input,
+											{
+												ctor: '::',
+												_0: _elm_lang$html$Html_Attributes$type_('text'),
+												_1: {
+													ctor: '::',
+													_0: _elm_lang$html$Html_Attributes$placeholder('Y = 0'),
+													_1: {
+														ctor: '::',
+														_0: _elm_lang$html$Html_Events$onInput(_user$project$Main$Y3),
+														_1: {ctor: '[]'}
+													}
+												}
+											},
+											{ctor: '[]'}),
+										_1: {ctor: '[]'}
+									}
+								}
+							}),
+						_1: {
+							ctor: '::',
+							_0: A2(
+								_elm_lang$html$Html$div,
+								{ctor: '[]'},
+								{
+									ctor: '::',
+									_0: _elm_lang$html$Html$text('Point:  '),
+									_1: {
+										ctor: '::',
+										_0: A2(
+											_elm_lang$html$Html$input,
+											{
+												ctor: '::',
+												_0: _elm_lang$html$Html_Attributes$type_('text'),
+												_1: {
+													ctor: '::',
+													_0: _elm_lang$html$Html_Attributes$placeholder('X = 0'),
+													_1: {
+														ctor: '::',
+														_0: _elm_lang$html$Html_Events$onInput(_user$project$Main$X0),
+														_1: {ctor: '[]'}
+													}
+												}
+											},
+											{ctor: '[]'}),
+										_1: {
+											ctor: '::',
+											_0: A2(
+												_elm_lang$html$Html$input,
+												{
+													ctor: '::',
+													_0: _elm_lang$html$Html_Attributes$type_('text'),
+													_1: {
+														ctor: '::',
+														_0: _elm_lang$html$Html_Attributes$placeholder('Y = 0'),
+														_1: {
+															ctor: '::',
+															_0: _elm_lang$html$Html_Events$onInput(_user$project$Main$Y0),
+															_1: {ctor: '[]'}
+														}
+													}
+												},
+												{ctor: '[]'}),
+											_1: {ctor: '[]'}
+										}
+									}
+								}),
+							_1: {
+								ctor: '::',
+								_0: A2(
+									_elm_lang$html$Html$div,
+									{ctor: '[]'},
+									{
+										ctor: '::',
+										_0: _elm_lang$html$Html$text('Result:  '),
+										_1: {
+											ctor: '::',
+											_0: _elm_lang$html$Html$text(
+												A4(
+													_user$project$Main$computeForTriangle,
+													{ctor: '_Tuple2', _0: model.x1, _1: model.y1},
+													{ctor: '_Tuple2', _0: model.x2, _1: model.y2},
+													{ctor: '_Tuple2', _0: model.x3, _1: model.y3},
+													{ctor: '_Tuple2', _0: model.x0, _1: model.y0}) ? 'Point is in triangle ' : 'Point is not in triangle '),
+											_1: {ctor: '[]'}
+										}
+									}),
+								_1: {
+									ctor: '::',
+									_0: A2(
+										_elm_lang$html$Html$div,
+										{ctor: '[]'},
+										{
+											ctor: '::',
+											_0: A2(
+												_elm_lang$html$Html$ul,
+												{ctor: '[]'},
+												{
+													ctor: '::',
+													_0: A2(
+														_elm_lang$html$Html$li,
+														{ctor: '[]'},
+														{
+															ctor: '::',
+															_0: _elm_lang$html$Html$text(
+																A2(
+																	_elm_lang$core$Basics_ops['++'],
+																	'x1:  ',
+																	_elm_lang$core$Basics$toString(model.x1))),
+															_1: {ctor: '[]'}
+														}),
+													_1: {
+														ctor: '::',
+														_0: A2(
+															_elm_lang$html$Html$li,
+															{ctor: '[]'},
+															{
+																ctor: '::',
+																_0: _elm_lang$html$Html$text(
+																	A2(
+																		_elm_lang$core$Basics_ops['++'],
+																		'y1:  ',
+																		_elm_lang$core$Basics$toString(model.y1))),
+																_1: {ctor: '[]'}
+															}),
+														_1: {
+															ctor: '::',
+															_0: A2(
+																_elm_lang$html$Html$li,
+																{ctor: '[]'},
+																{
+																	ctor: '::',
+																	_0: _elm_lang$html$Html$text(
+																		A2(
+																			_elm_lang$core$Basics_ops['++'],
+																			'x2:  ',
+																			_elm_lang$core$Basics$toString(model.x2))),
+																	_1: {ctor: '[]'}
+																}),
+															_1: {
+																ctor: '::',
+																_0: A2(
+																	_elm_lang$html$Html$li,
+																	{ctor: '[]'},
+																	{
+																		ctor: '::',
+																		_0: _elm_lang$html$Html$text(
+																			A2(
+																				_elm_lang$core$Basics_ops['++'],
+																				'y2:  ',
+																				_elm_lang$core$Basics$toString(model.y2))),
+																		_1: {ctor: '[]'}
+																	}),
+																_1: {
+																	ctor: '::',
+																	_0: A2(
+																		_elm_lang$html$Html$li,
+																		{ctor: '[]'},
+																		{
+																			ctor: '::',
+																			_0: _elm_lang$html$Html$text(
+																				A2(
+																					_elm_lang$core$Basics_ops['++'],
+																					'x3:  ',
+																					_elm_lang$core$Basics$toString(model.x3))),
+																			_1: {ctor: '[]'}
+																		}),
+																	_1: {
+																		ctor: '::',
+																		_0: A2(
+																			_elm_lang$html$Html$li,
+																			{ctor: '[]'},
+																			{
+																				ctor: '::',
+																				_0: _elm_lang$html$Html$text(
+																					A2(
+																						_elm_lang$core$Basics_ops['++'],
+																						'y3:  ',
+																						_elm_lang$core$Basics$toString(model.y3))),
+																				_1: {ctor: '[]'}
+																			}),
+																		_1: {
+																			ctor: '::',
+																			_0: A2(
+																				_elm_lang$html$Html$li,
+																				{ctor: '[]'},
+																				{
+																					ctor: '::',
+																					_0: _elm_lang$html$Html$text(
+																						A2(
+																							_elm_lang$core$Basics_ops['++'],
+																							'x0:  ',
+																							_elm_lang$core$Basics$toString(model.x0))),
+																					_1: {ctor: '[]'}
+																				}),
+																			_1: {
+																				ctor: '::',
+																				_0: A2(
+																					_elm_lang$html$Html$li,
+																					{ctor: '[]'},
+																					{
+																						ctor: '::',
+																						_0: _elm_lang$html$Html$text(
+																							A2(
+																								_elm_lang$core$Basics_ops['++'],
+																								'y0:  ',
+																								_elm_lang$core$Basics$toString(model.y0))),
+																						_1: {ctor: '[]'}
+																					}),
+																				_1: {ctor: '[]'}
+																			}
+																		}
+																	}
+																}
+															}
+														}
+													}
+												}),
+											_1: {ctor: '[]'}
+										}),
+									_1: {ctor: '[]'}
+								}
+							}
+						}
+					}
+				}
+			}
+		});
+};
+var _user$project$Main$main = _elm_lang$html$Html$beginnerProgram(
+	{model: _user$project$Main$model, view: _user$project$Main$view, update: _user$project$Main$update})();
