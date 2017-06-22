@@ -1,49 +1,67 @@
+var _user$project$TriangleDraw$printCoord = F2(
+	function (xcoor, ycoor) {
+		return A2(
+			_elm_lang$core$Basics_ops['++'],
+			'(',
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				_elm_lang$core$Basics$toString(xcoor),
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					';',
+					A2(
+						_elm_lang$core$Basics_ops['++'],
+						_elm_lang$core$Basics$toString(ycoor),
+						')'))));
+	});
+var _user$project$TriangleDraw$returnVal1 = function (value) {
+	return A2(_elm_lang$core$Maybe$withDefault, 0, value);
+};
+var _user$project$TriangleDraw$chooseColorOfPoint = function (boolValue1) {
+	return boolValue1 ? 'green' : 'red';
+};
+var _user$project$TriangleDraw$area_height = 520;
+var _user$project$TriangleDraw$area_width = 520;
+var _user$project$TriangleDraw$base_height = 0;
+var _user$project$TriangleDraw$base_width = 0;
+var _user$project$TriangleDraw$createPixel = F8(
+	function (xDist, yDist, xMin, yMin, xMax, yMax, tuplePixel, reserved_bool) {
+		var yDist1 = (_elm_lang$core$Native_Utils.cmp(yDist, 0) > 0) ? yDist : 1;
+		var xDist1 = (_elm_lang$core$Native_Utils.cmp(xDist, 0) > 0) ? xDist : 1;
+		var propDist = ((_elm_lang$core$Native_Utils.cmp(xDist, 0) > 0) && (_elm_lang$core$Native_Utils.cmp(yDist, 0) > 0)) ? (yDist / xDist) : 1;
+		var border_1 = 40;
+		var base_pixel_x = _user$project$TriangleDraw$base_width + border_1;
+		var base_pixel_y = _user$project$TriangleDraw$base_height + border_1;
+		var base_max_x = _user$project$TriangleDraw$area_width - border_1;
+		var base_max_y = _user$project$TriangleDraw$area_height - border_1;
+		var y_coor = _elm_lang$core$Tuple$second(tuplePixel);
+		var y_pixel = (_elm_lang$core$Native_Utils.cmp(xDist, yDist) > 0) ? (base_pixel_y + ((((y_coor - yMin) / yDist1) * (base_max_y - base_pixel_y)) * propDist)) : (base_pixel_y + ((((y_coor - yMin) / yDist1) * (base_max_y - base_pixel_y)) * 1));
+		var x_coor = _elm_lang$core$Tuple$first(tuplePixel);
+		var x_pixel = (_elm_lang$core$Native_Utils.cmp(xDist, yDist) > 0) ? (base_pixel_x + ((((x_coor - xMin) / xDist1) * (base_max_x - base_pixel_x)) * 1)) : (base_pixel_x + ((((x_coor - xMin) / xDist1) * (base_max_x - base_pixel_x)) * (1 / propDist)));
+		return {ctor: '_Tuple2', _0: x_pixel, _1: y_pixel};
+	});
 var _user$project$TriangleDraw$drawText = F4(
 	function (point, tag, anchor, baseline) {
-		return A2(
-			_elm_lang$svg$Svg$g,
-			{ctor: '[]'},
+		return A3(
+			_opensolid$svg$OpenSolid_Svg$text2d,
 			{
 				ctor: '::',
-				_0: A3(
-					_opensolid$svg$OpenSolid_Svg$text2d,
-					{
+				_0: _elm_lang$svg$Svg_Attributes$textAnchor(anchor),
+				_1: {
+					ctor: '::',
+					_0: _elm_lang$svg$Svg_Attributes$alignmentBaseline(baseline),
+					_1: {
 						ctor: '::',
-						_0: _elm_lang$svg$Svg_Attributes$textAnchor(anchor),
-						_1: {
-							ctor: '::',
-							_0: _elm_lang$svg$Svg_Attributes$alignmentBaseline(baseline),
-							_1: {
-								ctor: '::',
-								_0: _elm_lang$svg$Svg_Attributes$fill('black'),
-								_1: {ctor: '[]'}
-							}
-						}
-					},
-					point,
-					tag),
-				_1: {ctor: '[]'}
-			});
+						_0: _elm_lang$svg$Svg_Attributes$fill('black'),
+						_1: {ctor: '[]'}
+					}
+				}
+			},
+			point,
+			tag);
 	});
-var _user$project$TriangleDraw$renderSolid = F2(
-	function (_p1, _p0) {
-		var _p2 = _p1;
-		var _p3 = _p0;
-		return _opensolid$svg$OpenSolid_Svg$render2d(
-			_opensolid$geometry$OpenSolid_Geometry_Types$BoundingBox2d(
-				{minX: _p2._0, maxX: _p3._0, minY: _p2._1, maxY: _p3._1}));
-	});
-var _user$project$TriangleDraw$renderSolid_classic = F2(
-	function (_p5, _p4) {
-		var _p6 = _p5;
-		var _p7 = _p4;
-		return _opensolid$svg$OpenSolid_Svg$render2d(
-			_opensolid$geometry$OpenSolid_Geometry_Types$BoundingBox2d(
-				{minX: _p6._0, maxX: _p7._0, minY: _p6._1, maxY: _p7._1}));
-	});
-var _user$project$TriangleDraw$point_color_correct = 'black';
-var _user$project$TriangleDraw$drawPointOfUser = function () {
-	var point_color = _user$project$TriangleDraw$point_color_correct;
+var _user$project$TriangleDraw$drawPointOfUser = function (pointColor) {
+	var point_color = pointColor;
 	return _opensolid$svg$OpenSolid_Svg$point2d(
 		{
 			radius: 5,
@@ -57,86 +75,208 @@ var _user$project$TriangleDraw$drawPointOfUser = function () {
 				}
 			}
 		});
-}();
-var _user$project$TriangleDraw$drawTriangleAndPoint = function (_p8) {
-	var _p9 = _p8;
-	var y_point = _p9._7;
-	var x_point = _p9._6;
-	var userPoint = _opensolid$geometry$OpenSolid_Geometry_Types$Point2d(
-		{ctor: '_Tuple2', _0: x_point, _1: y_point});
-	var y_vertice_3 = _p9._5;
-	var x_vertice_3 = _p9._4;
-	var p3 = _opensolid$geometry$OpenSolid_Geometry_Types$Point2d(
-		{ctor: '_Tuple2', _0: x_vertice_3, _1: y_vertice_3});
-	var y_vertice_2 = _p9._3;
-	var x_vertice_2 = _p9._2;
-	var p2 = _opensolid$geometry$OpenSolid_Geometry_Types$Point2d(
-		{ctor: '_Tuple2', _0: x_vertice_2, _1: y_vertice_2});
-	var y_vertice_1 = _p9._1;
-	var x_vertice_1 = _p9._0;
-	var p1 = _opensolid$geometry$OpenSolid_Geometry_Types$Point2d(
-		{ctor: '_Tuple2', _0: x_vertice_1, _1: y_vertice_1});
-	return A2(
-		_elm_lang$svg$Svg$g,
-		{ctor: '[]'},
-		{
-			ctor: '::',
-			_0: A2(
-				_opensolid$svg$OpenSolid_Svg$triangle2d,
-				{
-					ctor: '::',
-					_0: _elm_lang$svg$Svg_Attributes$stroke('blue'),
-					_1: {
+};
+var _user$project$TriangleDraw$drawTriangleAndPoint = F6(
+	function (val_For_Color, model, pixel1, pixel2, pixel3, pixel0) {
+		var pointColor = _user$project$TriangleDraw$chooseColorOfPoint(val_For_Color);
+		var userPoint = _opensolid$geometry$OpenSolid_Geometry_Types$Point2d(
+			{
+				ctor: '_Tuple2',
+				_0: _elm_lang$core$Tuple$first(pixel0),
+				_1: _elm_lang$core$Tuple$second(pixel0)
+			});
+		var vertice3 = _opensolid$geometry$OpenSolid_Geometry_Types$Point2d(
+			{
+				ctor: '_Tuple2',
+				_0: _elm_lang$core$Tuple$first(pixel3),
+				_1: _elm_lang$core$Tuple$second(pixel3)
+			});
+		var vertice2 = _opensolid$geometry$OpenSolid_Geometry_Types$Point2d(
+			{
+				ctor: '_Tuple2',
+				_0: _elm_lang$core$Tuple$first(pixel2),
+				_1: _elm_lang$core$Tuple$second(pixel2)
+			});
+		var vertice1 = _opensolid$geometry$OpenSolid_Geometry_Types$Point2d(
+			{
+				ctor: '_Tuple2',
+				_0: _elm_lang$core$Tuple$first(pixel1),
+				_1: _elm_lang$core$Tuple$second(pixel1)
+			});
+		return A2(
+			_elm_lang$svg$Svg$g,
+			{ctor: '[]'},
+			{
+				ctor: '::',
+				_0: A2(
+					_opensolid$svg$OpenSolid_Svg$triangle2d,
+					{
 						ctor: '::',
-						_0: _elm_lang$svg$Svg_Attributes$strokeWidth('5'),
+						_0: _elm_lang$svg$Svg_Attributes$stroke('blue'),
 						_1: {
 							ctor: '::',
-							_0: _elm_lang$svg$Svg_Attributes$strokeLinejoin('round'),
+							_0: _elm_lang$svg$Svg_Attributes$strokeWidth('2'),
 							_1: {
 								ctor: '::',
-								_0: _elm_lang$svg$Svg_Attributes$fill('white'),
-								_1: {ctor: '[]'}
+								_0: _elm_lang$svg$Svg_Attributes$strokeLinejoin('round'),
+								_1: {
+									ctor: '::',
+									_0: _elm_lang$svg$Svg_Attributes$fill('white'),
+									_1: {ctor: '[]'}
+								}
 							}
 						}
-					}
-				},
-				_opensolid$geometry$OpenSolid_Geometry_Types$Triangle2d(
-					{ctor: '_Tuple3', _0: p1, _1: p2, _2: p3})),
-			_1: {
-				ctor: '::',
-				_0: _user$project$TriangleDraw$drawPointOfUser(userPoint),
+					},
+					_opensolid$geometry$OpenSolid_Geometry_Types$Triangle2d(
+						{ctor: '_Tuple3', _0: vertice1, _1: vertice2, _2: vertice3})),
 				_1: {
 					ctor: '::',
-					_0: A4(_user$project$TriangleDraw$drawText, p1, '(0,0)', 'start', 'baseline'),
+					_0: A2(_user$project$TriangleDraw$drawPointOfUser, pointColor, userPoint),
 					_1: {
 						ctor: '::',
-						_0: A4(_user$project$TriangleDraw$drawText, p2, '(0,0)', 'start', 'baseline'),
+						_0: A4(
+							_user$project$TriangleDraw$drawText,
+							vertice1,
+							A2(_user$project$TriangleDraw$printCoord, model.x1, model.y1),
+							'baseline',
+							'baseline'),
 						_1: {
 							ctor: '::',
-							_0: A4(_user$project$TriangleDraw$drawText, p3, '(0,0)', 'start', 'baseline'),
+							_0: A4(
+								_user$project$TriangleDraw$drawText,
+								vertice2,
+								A2(_user$project$TriangleDraw$printCoord, model.x2, model.y2),
+								'baseline',
+								'baseline'),
 							_1: {
 								ctor: '::',
-								_0: A4(_user$project$TriangleDraw$drawText, userPoint, '(0,0)', 'start', 'baseline'),
-								_1: {ctor: '[]'}
+								_0: A4(
+									_user$project$TriangleDraw$drawText,
+									vertice3,
+									A2(_user$project$TriangleDraw$printCoord, model.x3, model.y3),
+									'baseline',
+									'baseline'),
+								_1: {
+									ctor: '::',
+									_0: A4(
+										_user$project$TriangleDraw$drawText,
+										userPoint,
+										A2(_user$project$TriangleDraw$printCoord, model.x0, model.y0),
+										'baseline',
+										'baseline'),
+									_1: {ctor: '[]'}
+								}
 							}
 						}
 					}
 				}
+			});
+	});
+var _user$project$TriangleDraw$renderSolid = F2(
+	function (_p1, _p0) {
+		var _p2 = _p1;
+		var _p3 = _p0;
+		return _opensolid$svg$OpenSolid_Svg$render2d(
+			_opensolid$geometry$OpenSolid_Geometry_Types$BoundingBox2d(
+				{minX: _p2._0, maxX: _p3._0, minY: _p2._1, maxY: _p3._1}));
+	});
+var _user$project$TriangleDraw$customVisual = F2(
+	function (model, val_For_Color) {
+		var ys = {
+			ctor: '::',
+			_0: model.y1,
+			_1: {
+				ctor: '::',
+				_0: model.y2,
+				_1: {
+					ctor: '::',
+					_0: model.y3,
+					_1: {
+						ctor: '::',
+						_0: model.y0,
+						_1: {ctor: '[]'}
+					}
+				}
 			}
-		});
-};
-var _user$project$TriangleDraw$customVisual = function () {
-	var area_height = 500;
-	var area_width = 500;
-	var base_height = 0;
-	var base_width = 0;
-	return A3(
-		_user$project$TriangleDraw$renderSolid,
-		{ctor: '_Tuple2', _0: base_width, _1: base_height},
-		{ctor: '_Tuple2', _0: base_width + area_width, _1: base_height + area_height},
-		_user$project$TriangleDraw$drawTriangleAndPoint(
-			{ctor: '_Tuple8', _0: 100, _1: 100, _2: 100, _3: 200, _4: 200, _5: 100, _6: 110, _7: 190}));
-}();
+		};
+		var yMin = _user$project$TriangleDraw$returnVal1(
+			_elm_lang$core$List$minimum(ys));
+		var yMax = _user$project$TriangleDraw$returnVal1(
+			_elm_lang$core$List$maximum(ys));
+		var yDist = yMax - yMin;
+		var xs = {
+			ctor: '::',
+			_0: model.x1,
+			_1: {
+				ctor: '::',
+				_0: model.x2,
+				_1: {
+					ctor: '::',
+					_0: model.x3,
+					_1: {
+						ctor: '::',
+						_0: model.x0,
+						_1: {ctor: '[]'}
+					}
+				}
+			}
+		};
+		var xMin = _user$project$TriangleDraw$returnVal1(
+			_elm_lang$core$List$minimum(xs));
+		var xMax = _user$project$TriangleDraw$returnVal1(
+			_elm_lang$core$List$maximum(xs));
+		var xDist = xMax - xMin;
+		var pixel1 = A8(
+			_user$project$TriangleDraw$createPixel,
+			xDist,
+			yDist,
+			xMin,
+			yMin,
+			xMax,
+			yMax,
+			{ctor: '_Tuple2', _0: model.x1, _1: model.y1},
+			true);
+		var pixel2 = A8(
+			_user$project$TriangleDraw$createPixel,
+			xDist,
+			yDist,
+			xMin,
+			yMin,
+			xMax,
+			yMax,
+			{ctor: '_Tuple2', _0: model.x2, _1: model.y2},
+			true);
+		var pixel3 = A8(
+			_user$project$TriangleDraw$createPixel,
+			xDist,
+			yDist,
+			xMin,
+			yMin,
+			xMax,
+			yMax,
+			{ctor: '_Tuple2', _0: model.x3, _1: model.y3},
+			true);
+		var pixel0 = A8(
+			_user$project$TriangleDraw$createPixel,
+			xDist,
+			yDist,
+			xMin,
+			yMin,
+			xMax,
+			yMax,
+			{ctor: '_Tuple2', _0: model.x0, _1: model.y0},
+			true);
+		return A3(
+			_user$project$TriangleDraw$renderSolid,
+			{ctor: '_Tuple2', _0: _user$project$TriangleDraw$base_width, _1: _user$project$TriangleDraw$base_height},
+			{ctor: '_Tuple2', _0: _user$project$TriangleDraw$base_width + _user$project$TriangleDraw$area_width, _1: _user$project$TriangleDraw$base_height + _user$project$TriangleDraw$area_height},
+			A6(_user$project$TriangleDraw$drawTriangleAndPoint, val_For_Color, model, pixel1, pixel2, pixel3, pixel0));
+	});
+var _user$project$TriangleDraw$Model = F8(
+	function (a, b, c, d, e, f, g, h) {
+		return {x1: a, y1: b, x2: c, y2: d, x3: e, y3: f, x0: g, y0: h};
+	});
+var _user$project$TriangleDraw$model1 = A8(_user$project$TriangleDraw$Model, 10.0, 0.0, 0.0, 12.0, 0.0, 0.0, 1.0, 1.0);
 var _user$project$TriangleDraw$main = _elm_lang$virtual_dom$Native_VirtualDom.staticProgram(
 	A2(
 		_elm_lang$html$Html$div,
@@ -146,14 +286,102 @@ var _user$project$TriangleDraw$main = _elm_lang$virtual_dom$Native_VirtualDom.st
 			_0: _elm_lang$html$Html$text('An example:'),
 			_1: {
 				ctor: '::',
-				_0: A2(
-					_elm_lang$html$Html$div,
-					{ctor: '[]'},
-					{
+				_0: _elm_lang$html$Html$text(
+					_elm_lang$core$Basics$toString(
+						_user$project$TriangleDraw$returnVal1(
+							_elm_lang$core$List$minimum(
+								{
+									ctor: '::',
+									_0: 4,
+									_1: {
+										ctor: '::',
+										_0: 2,
+										_1: {
+											ctor: '::',
+											_0: 1,
+											_1: {ctor: '[]'}
+										}
+									}
+								})))),
+				_1: {
+					ctor: '::',
+					_0: _elm_lang$html$Html$text(
+						_elm_lang$core$Basics$toString(
+							A2(
+								_elm_lang$core$Basics_ops['++'],
+								_elm_lang$core$Tuple$first(
+									_elm_lang$core$List$unzip(
+										A3(
+											_elm_lang$core$List$map2,
+											F2(
+												function (v0, v1) {
+													return {ctor: '_Tuple2', _0: v0, _1: v1};
+												}),
+											{
+												ctor: '::',
+												_0: 1.0,
+												_1: {
+													ctor: '::',
+													_0: 2.0,
+													_1: {
+														ctor: '::',
+														_0: 3.0,
+														_1: {ctor: '[]'}
+													}
+												}
+											},
+											{
+												ctor: '::',
+												_0: 1.0,
+												_1: {
+													ctor: '::',
+													_0: 3.0,
+													_1: {
+														ctor: '::',
+														_0: 2.0,
+														_1: {ctor: '[]'}
+													}
+												}
+											}))),
+								_elm_lang$core$Tuple$second(
+									_elm_lang$core$List$unzip(
+										A3(
+											_elm_lang$core$List$map2,
+											F2(
+												function (v0, v1) {
+													return {ctor: '_Tuple2', _0: v0, _1: v1};
+												}),
+											{
+												ctor: '::',
+												_0: 1.0,
+												_1: {
+													ctor: '::',
+													_0: 2.0,
+													_1: {
+														ctor: '::',
+														_0: 3.0,
+														_1: {ctor: '[]'}
+													}
+												}
+											},
+											{
+												ctor: '::',
+												_0: 1.0,
+												_1: {
+													ctor: '::',
+													_0: 3.0,
+													_1: {
+														ctor: '::',
+														_0: 2.0,
+														_1: {ctor: '[]'}
+													}
+												}
+											})))))),
+					_1: {
 						ctor: '::',
-						_0: _user$project$TriangleDraw$customVisual,
+						_0: A2(_user$project$TriangleDraw$customVisual, _user$project$TriangleDraw$model1, false),
 						_1: {ctor: '[]'}
-					}),
-				_1: {ctor: '[]'}
+					}
+				}
 			}
 		}));
