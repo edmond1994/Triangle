@@ -139,19 +139,19 @@ view model =
       ]
       , div []
       [
-        Html.text "Vertice 1: "
+        Html.text "Vertex 1: "
         , input [ Html.Attributes.type_ "number", step "any", placeholder "X = 0", {- value <| toString(model.x1), -}  onInput X1 ] []
         , input [ Html.Attributes.type_ "number", step "any", placeholder "Y = 0", {- value <| toString(model.y1), -} onInput Y1 ] []
       ]
       , div []
       [
-        Html.text "Vertice 2: "
+        Html.text "Vertex 2: "
         , input [ Html.Attributes.type_ "number", step "any", placeholder "X = 0", {- value <| toString(model.x2), -} onInput X2 ] []
         , input [ Html.Attributes.type_ "number", step "any", placeholder "Y = 0", {- value <| toString(model.y2), -} onInput Y2 ] []
       ]
       , div []
       [
-        Html.text "Vertice 3: "
+        Html.text "Vertex 3: "
         , input [ Html.Attributes.type_ "number", step "any", placeholder "X = 0", {- value <| toString(model.x3), -} onInput X3 ] []
         , input [ Html.Attributes.type_ "number", step "any", placeholder "Y = 0", {- value <| toString(model.y3), -} onInput Y3 ] []
       ]
